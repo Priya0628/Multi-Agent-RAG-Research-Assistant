@@ -281,14 +281,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-## 👤 Author
-
-**Padmapriya**
-
-- Portfolio: [Your Portfolio URL]
-- LinkedIn: [Your LinkedIn URL]
-- GitHub: [Your GitHub URL]
-
----
-
 *Built with ❤️ using CrewAI, LangChain, and OpenAI*
