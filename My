@@ -1,0 +1,42 @@
+{Key Concepts (Simple Definitions)
+1. RAG (Retrieval-Augmented Generation)
+Simple definition: Instead of the AI making things up, it first looks up relevant information from your documents, then uses that to answer.
+Example: Like open-book exam vs. closed-book. RAG lets the AI check its notes!
+2. LLM (Large Language Model)
+Simple definition: The AI brain (like ChatGPT) that reads text and generates responses.
+Example: OpenAI's GPT-4, Claude, etc.
+3. Vector Database
+Simple definition: A special storage system that remembers the meaning of text, not just the words.
+Example: It knows "car" and "automobile" are similar, even if the words are different.
+How it works: Converts text → numbers (vectors) → stores them → finds similar meanings quickly.
+4. Embeddings
+Simple definition: Converting text into a list of numbers that capture its meaning.
+Example: "I love pizza" → [0.2, 0.8, 0.1, ...] (1536 numbers for OpenAI embeddings)
+5. Multi-Agent AI (CrewAI)
+Simple definition: Multiple AI agents working together, each with a specific job.
+Example: Like a team where one person researches, another writes, another edits.
+}
+
+
+chromadb - Vector database (stores embeddings)
+openai - Connects to OpenAI API (GPT-4, embeddings)
+pydantic-settings - Manages settings safely
+crewai - Multi-agent framework
+
+The Complete Project Roadmap
+Phase 1: Setup & Understanding RAG Basics (Days 1-2)
+Phase 2: Build RAG Pipeline (Days 3-4)
+Phase 3: Add CrewAI Agents (Days 5-6)
+Phase 4: Connect Everything (Day 7)
+Phase 5: Polish & Demo (Day 8)
+
+
+SET UP 
+
+data/ - Your knowledge base (text files the AI will read)
+configs/ - Settings and API keys
+rag/ - RAG logic (embedding, storing, retrieving)
+crew - Your AI agents
+scripts/ - Helper scripts
+artifacts - Final outputs
+

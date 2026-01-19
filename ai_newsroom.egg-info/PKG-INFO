@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: ai-newsroom
+Version: 0.1.0
+Summary: Multi-Agent AI Newsroom (CrewAI) — summarize, fact-check, illustrate, publish.
+Requires-Dist: crewai>=0.28.0
+Requires-Dist: openai>=1.50.0
+Requires-Dist: feedparser
+Requires-Dist: python-dotenv
+Requires-Dist: streamlit
+Requires-Dist: pytest

@@ -1,0 +1,782 @@
+Future of AI Models: A Computational
+perspective on Model collapse
+Trivikram Satharasi1* and S. Sitharama Iyengar2
+1*University of Florida, Gainesville, 32611, Florida, United States.
+2Florida International University, Miami, 33199, Florida, United States.
+*Corresponding author(s). E-mail(s): t.satharasi@ufl.edu;
+Contributing authors: iyengar@cis.fiu.edu;
+Abstract
+In recent years, Artificial Intelligence, especially with the advent of Large Lan-
+guage Models (LLMs), has transformed domains(Naveed et al. 2025) such as
+software engineering, journalism, and creative writing, and is now reshaping
+academia and media through diffusion models like Stable Diffusion, which gen-
+erate high-quality images and videos from text. Recent evidence illustrates this
+growing trend, A 2025 Ahrefs study found that 74.2% of newly published web-
+pages contain AI-generated material (Ryan Law 2025), while large-scale text
+analyses estimate that 30–40% of the active web corpus is now synthetic (Spen-
+nemann2025)andalsoasurvey(Staff2025)haveshowthat52%ofU.S.adults
+use LLMs such as ChatGPT for writing, coding, or research tasks, and institu-
+tional audits reveal that 18% of financial complaint texts and 24% of corporate
+press releases are AI-assisted (Liang et al. 2025).
+The neural architectures powering these systems, for example, Transformers,
+RNNs,LSTMs,GANs,anddiffusionnetworks,dependcriticallyonlarge,diverse,
+human-authored datasets(Shi and Iyengar 2019; Vaswani et al. 2023). As AI-
+assistedgenerationbecomesthenormformanytasks,theshareofsynthetic(AI-
+generated) content relative to human-authored data continues to rise, creating
+a recursive feedback loop that risks eroding linguistic and semantic diversity—a
+processknownasModelCollapse(Shumailovetal.2024;Dohmatobetal.2024).
+This study quantifies and forecasts the potential onset of model collapse by
+examiningtheevolutionoflinguisticsimilarityinlarge-scaletextdatasets.Using
+a filtered subset of the Common Crawl corpus (English-language Wikipedia
+articles), we compute year-wise semantic similarity from 2013 to 2025 through
+Transformer-basedembeddingsandcosinemetrics.Resultsindicateasteadyrise
+in similarity even before public LLM adoption, likely due to early use of RNNs
+and LSTMs for translation and text normalization. However, their limited scale
+1
+5202
+tcO
+92
+]LC.sc[
+1v53550.1152:viXra
+kept the effect modest alongside. Results also indicate fluctuations in similarity
+are attributed to irreducible linguistic diversity, variations in corpus size across
+yearsandfinitesamplingerror.Thesefindingsprovideadata-drivenestimatefor
+when recursive AI contamination could significantly threaten data richness and
+model generalization.
+Keywords:ArtificialIntelligence,Transformers,DataAvailability,Training,Deep
+learning,LargeLanguageModels,UsageofAI
+1 Introduction
+The recent years have seen Artificial Intelligence undergo a paradigm shift, largely
+driven by sophisticated generative and language models. Large Language Models
+(LLMs) (Naveed et al. 2025) like OpenAI’s GPT series (Radford et al. 2019; Brown
+et al. 2020; OpenAI et al. 2024) have fundamentally transformed business models
+of various industries. These models have demonstrated emergent capabilities that
+scale with size. They are no longer mere tools but collaborative partners, automat-
+ing complex cognitive tasks like software development, legal contract analysis, and
+scientificresearch.Simultaneously,theyserveaspowerfulcatalystsforhumancreativ-
+ity, assisting authors in drafting narratives, helping marketers brainstorm campaigns,
+andenablingdeveloperstoprototypeideasatunprecedentedspeed.Thesecapabilities
+have been discussed in greater detail in (Naveed et al. 2025).
+Parallel to the advances in language generation, visual media capabilities have
+experiencedasimilarrevolution(ForexampleOpenAI’sDALLE(Rameshetal.2021,
+2022)), driven by text-to-image based models and further revolutionized by diffusion-
+basedsystemssuchasStableDiffusion(Croitoruetal.2023;Rombachetal.2022;Ho
+et al. 2020) . These models have reshaped professional workflows (Wang et al. 2024;
+Tang et al. 2024a,b) in graphic design, architecture, product prototyping, and enter-
+tainment, where concept artists and directors can now visualize scenes with ease and
+editthemwithflexibility.Thescaleofthistransformationisextraordinary:asof2024,
+morethan15 billion AI-generated imageshavebeencreatedusingdiffusion-based
+systems, with estimates suggesting over 30 million new images generated daily
+(EveryPixelJournal2024;Kumar2024).Thetrainingdatasetsenablingthesesystems,
+such as LAION-5B(Schuhmann et al. 2022), contain billions of image–text pairs
+scraped from the public web (Rombach et al. 2022). A systematic review by Oksanen
+etal.(2023)(Oksanenetal.2023)analyzed723studiesonAIinfineartsandretained
+44empiricalworks;overhalffocusedonvisualarts,whileonequarterexaminedAIin
+music generation. Notably, several studies found that audiences often struggle to dis-
+tinguish AI-generated from human-created artworks, though human art is still rated
+higher in perceived aesthetic depth. More recently, a meta-analysis by Holzner et al.
+(2025)(Holzneret al.2025)aggregateddata from 28 studies involving 8,214 par-
+ticipants, showing that humans augmented with generative AI outperform unaided
+humans in creativity tasks (Hedges’ g =0.27), while GenAI use substantially reduces
+idea diversity (g =−0.86), empirically validating concerns over homogenization.
+2
+The performance of these transformative techniques lies in their training tech-
+niques,whicharecriticallydependentonvast,high-quality,andrichlydiversedatasets,
+mostofwhichhavebeenscrapedfromthepublicinternet.Thesedatasetsareregarded
+as a comprehensive digital snapshot of collective human knowledge, language, logic,
+and creativity. This snapshot includes not only facts but also dialogue, the logical
+structure of code, the tone of a sentence/language, and literature. The diversity and
+factual accuracy of this data are the bedrock of AI models’ capabilities. It is this
+foundation that allows the models to achieve their generalization. However, these
+foundationaldatasetsalsocarrymisinformationandinherentbiases.Thefuturedevel-
+opment of AI, therefore, hinges not just on bigger models but also on curation and
+filtering of the data that gives them life and accuracy of information. The curation
+and filtering of data during the modeling of large-scale AI systems are fundamental
+toachievingsustainedaccuracyandreliabilityovertime.Rawdatasetscollectedfrom
+heterogeneous sources often exhibit high levels of noise, redundancy, imbalance, and
+latent bias, which can severely degrade model performance and accelerate accuracy
+decay in dynamic environments. Systematic data preprocessing, through deduplica-
+tion,normalization,featureselection,andoutlierremoval,enhancesthesignal-to-noise
+ratio and provides more stable statistical properties for downstream model train-
+ing. Furthermore, bias-aware filtering and fairness-driven data augmentation mitigate
+representational disparities, thereby reducing systematic errors and improving model
+equity across diverse subpopulations. These measures are particularly critical in miti-
+gatingdatadriftandconceptdrift,whereunderlyingdatadistributionsshiftovertime
+due to evolving user behaviors, environmental factors, or adversarial manipulation.
+Incorporating active learning and continual learning strategies further strengthens
+model resilience by dynamically updating training corpora with high-value samples
+whilediscardinglow-utilityoradversarialdatapoints.Recentworkindata-centricAI
+emphasizes(Iyengar et al. 2025a,b; Singaram et al. 2024; Soni et al. 2024; Ng et al.
+2022;G.S.etal.2022;ShiandIyengar2019;Northcuttetal.2021),high-qualitydata
+governanceframeworksnotonlyoptimizetrainingefficiencybutalsoextendtheoper-
+ationallifespanofAImodelsbypreservinggeneralizationcapabilityinnon-stationary
+environments. Ultimately, well-curated and adaptively filtered datasets serve as the
+cornerstone for scalable, trustworthy, and temporally robust AI systems.
+The effect of the proliferation of AI is seen in a 2025 study by Ahrefs report-
+ing 74.2% of newly published web pages contained AI-generated material (Ryan Law
+2025). Large-scale web-corpus analyses estimate that 30–40% of all active web text
+now originates from AI-generated or AI-edited sources (Spennemann 2025). Further-
+more, a 2025 survey by Elon University found that 52% of U.S. adults regularly use
+LLMs like ChatGPT for writing, coding, or research tasks (Staff 2025). Within pro-
+fessional domains, 18% of financial consumer complaint records and 24% of corporate
+press releases are estimated to contain LLM-assisted text (Liang et al. 2025).
+This proliferation of AI-generated content has introduced a looming, systemic risk
+to the future of artificial intelligence itself: AI Model Collapse. This phenomenon,
+sometimes referred to in academic literature as Model Autophagy Disorder,
+describes a degenerative process where successive generations of models exhibit pro-
+gressively diminishing quality when trained on the synthetic data produced by their
+3
+predecessors. The very scalability that makes generative AI so powerful becomes its
+potential undoing, as the digital ecosystem becomes saturated with its own arti-
+ficial creations, threatening to poison the well for future training by creating a
+self-consuming feedback loop.
+Inthiswork,atimelineforthepotentialcollapseofAImodelsisanalyzedandgen-
+erated. This timeline is estimated by examining similarities between past and current
+data, taking into account the current rates of synthetic data consumption and avail-
+ability. This work is divided into sections: Section 2 discusses the Problem Statement
+and its relevance; Section 3 provides Theoretical Intuition; Section 4 shows the Prop-
+ertiesoftheAnalyzeddata;Section5.3discussestheResultsandIntuitiveInferences;
+and Section 6 summarizes the results and Future Work in this area.
+2 Problem Statement
+This work aims to analyze the effect of the proliferation of Artificial Intelligence on
+thequalityofdatasetsovertime.Mathematically,givenacorpusofdatafromasingle
+source, this study quantifies the trends in similarity and diversity along the temporal
+axis.Inparticular,weinvestigatethetemporaldistribution,context,andwritingstyle
+through similarity and overall diversity of the corpus as it evolves.
+Let the corpus, denoted by D, consist of N datasets, indexed by i=1,2,...N. For
+document i, let
+• y ∈R denotes the year or order of creation,
+i
+• x ∈Rm denotesthecontentrepresentationofelementj inthedatasetD[i|y =y ]
+i,j i
+(e.g. embedding vector capturing style and context)
+We define the following parameters:
+• q ∈R defines the similarity between element j and k in the dataset D[i|y =y ],
+i,j,k i
+• q ∈R defines the average similarity between all elements in the dataset D[i|y =y ]
+i i
+1 (cid:88)
+q = q
+i N i,j,k
+i
+j,k∈D(yi)
+where,
+N is the number of distinct combinations q for distinct x and x in the
+i,j,k i,j i,k
+dataset D[i]
+• µ ∈ Rm defines the mean of all the representations in a specific dataset,i.e.,
+i
+x ∈D[i]. where,
+i,j
+1 (cid:88)
+µ = x
+i n i,j
+i
+j∈D[i|y=yi]
+where n is the no of elements in the dataset D[i]
+i
+4
+• Σ ∈Rm×m defines the variance of all the representations in a specific dataset,i.e.,
+i
+x ∈D[i]. where,
+i,j
+Σ = 1 (cid:88) [x −µ ][x −µ ]T
+i n −1 i,j i i,j i
+i
+j∈D[i|y=yi]
+where n is the no of elements in the dataset D[i]
+i
+This work will mathematically visualize the evolution of similarity and diversity
+over time in the dataset, enabling us to detect and interpret any potential onset of
+collapse or excessive redundancy.
+3 Theoretical Intuition
+As discussedin Section 1,Artificial Intelligence is transforming nearlyevery aspect of
+modern life, reshaping industries, accelerating creativity, and redefining how humans
+interactwithtechnology.Atthecoreoftheseadvancementsliegenerativemodelsthat
+are fundamentally dependent on the data used to train them. The quality, diversity,
+and originality of this data determine the richness and expressiveness of the model’s
+output.However,withtherapidproliferationofAI-generatedcontent,thecomposition
+of the internet is changing. Consequently, the training datasets that are scraped from
+it have begun to change. Increasingly, portions of these datasets contain synthetic
+data produced by earlier generations of generative models. When future models are
+trained on this self-generated, synthetic content, the diversity of the training corpus
+diminishes. Over time, the model repeatedly reinforces its own biases and stylistic
+patterns, rather than learning from genuinely novel data. This recursive process of
+training on self-produced data gradually erodes the information that was initially
+sparseanduniqueintheoriginaldataset.Asaresult,subsequentgenerationsofmodels
+begin to exhibit homogenized, repetitive, and less creative outputs. In essence, the
+model’s understanding of the data distribution becomes increasingly narrow, leading
+to a progressive loss of diversity and semantic integrity in its subsequent generations.
+This intuition has been previously formalized in the literature by works such as
+Shumailovetal.(2024)andDohmatobetal.(2024),whichmathematicallyformalized
+howrecursiveself-trainingcancauseinformationaldegradationingenerativesystems.
+Buildinguponthesefoundations,weseektovisualizeandquantifyhowsimilarityand
+diversity evolve within synthetically contaminated datasets.
+Definition 3.1.1. Model collapse:Adegenerativeprocessaffectingsuccessive
+generations of learned generative models, wherein the synthetic data produced
+by one generation contaminates the training corpus of subsequent generations,
+leadingtoagradualdegradationofdiversityandsemanticintegrityinthemodel
+outputs.
+This pollution affects the performance of the models in multiple ways.
+5
+• Increased Statistical Error
+This phenomenon arises due to the finite sampling of data, which introduces
+discrepancies between the estimated feature distribution and the true underlying
+distribution. In other words, when only a limited subset of data is used to approx-
+imate the true data-generating process, small sampling errors can propagate and
+amplify across generations of models.
+Whensyntheticdataisintroducedintothesedatasets,thisdiscrepancybecomes
+more pronounced. Synthetic samples tend to oversample the most likely feature
+values while undersampling the less likely ones. Consequently, the estimated data
+distribution becomes increasingly concentrated around high-probability regions of
+the feature space. This shift amplifies the likelihood of already common patterns
+and suppresses rare or unique ones, resulting in more homogeneous and less diverse
+model outputs in subsequent generations. This is also referred to as ”Forgetting the
+Tails of the Distribution”(Shumailov et al. 2024; Dohmatob et al. 2024)
+• Decreasing Generalization
+As successive generations of large language and diffusion models continue to
+increase in scale, their sizes surpass those of previous generations by several orders
+of magnitude, incorporating billions of additional parameters at each stage, For
+Example, OpenAI models GPT-2(Radford et al. 2019) had about 1.5 billion data
+points in the largest model, it’s successive generation, GPT-3(Brown et al. 2020)
+had about 175 billion parameters. Consequently, the risk of overfitting becomes
+morepronouncedasthetrainingdatadistributionsgrowincreasinglyhomogeneous.
+In such cases, the effective information content of the training data may become
+equivalenttothatofamuchsmalleryetmorediversedataset.Whenmodelsofmas-
+sive capacity are trained on such limited informational diversity, overfitting, which
+is the phenomenon characterized by a model’s inability to generalize effectively to
+novel or unseen data, is likely to occur.
+• Amplification of Biases
+Theopeninternetremainssusceptibletomisinformation,propaganda,andfab-
+ricatedcontent.Consequently,thedatasetsscrapedfromonlinesourcesfortraining
+generativemodelsarelikelytocontaininherentbiasesoriginatingfromsuchinaccu-
+racies.Undertypicalcircumstances,asfactualinformationbecomesmoreprevalent,
+theinfluenceoffalsifiedcontenttendstodiminishovertime.However,withtherapid
+proliferation of AI-generated material, models previously trained on biased data
+may inadvertently amplify these distortions. As such models generate and publish
+new content online, the proportion of synthetic data reflecting pre-existing biases
+can grow exponentially, further reinforcing and overrepresenting falsified informa-
+tion relative to unbiased content. This can be a part of Knowledge Collapse of AI
+models(Peterson 2025)
+This study investigates the temporal evolution of diversity metrics in a dataset
+constructed from a fixed set of sources to construct a specific timeline for Model
+Collapse.
+6
+4 Methodology
+The methodology employed in this study follows a multi-stage approach designed to
+capture the temporal evolution of diversity metrics used to train language models. It
+consists of the following key stages:
+1. Data Preprocessing: Appropriate cleaning and filtering are applied to the raw
+data to remove inconsistencies and irrelevant entries. The processed data are then
+converted into structured formats that can be efficiently utilized in subsequent
+analytical steps.
+2. Embedding: Since computers cannot inherently comprehend the flow or contex-
+tual meaning of natural language, Natural Language Processing (NLP) models are
+employedtoconverttextualdatafromtextorpagesintovectorembeddings.These
+embeddingsencapsulatenotonlythesemanticcontentbutalsothetoneandwriting
+style of the original text.
+3. Compute a numerical metric for Diversity: Use the vector embeddings com-
+putedinthepreviousstatetocomputeasimilarityordiversitymetricbetweentwo
+elements within the dataset and the total average diversity in a database.
+4. Visualization: The resulting trends and relationships are visualized through a
+series of plots that illustrate the evolution of diversity metrics across years.
+4.1 Data Pre-processing
+The raw data extracted from the source database cannot be directly utilized for lin-
+guisticortextualanalysis,asittypicallycontainsinconsistenciesinformat,language,
+and content structure. Before any modeling stage, it is essential to ensure that the
+dataset is both linguistically and contextually homogeneous to prevent the introduc-
+tionofexternalvarianceunrelatedtothephenomenon,suchasdifferentwritingstyles
+for various languages, which can cause variability or diversity. Another example is
+howthetoneofwritingchangesbasedontheaudience.Forinstance,thetoneofwrit-
+ing for a newspaper would be different from that of writing for a social media post,
+which again would cause variability that can mask the evolving recursive similarity.
+TheeffectsandtheneedtofilterdataforlinguisticsandNLParediscussedingreater
+detail in (Billal et al. 2016)
+To avoid this, the preprocessing pipeline first standardizes the textual data to a
+uniform language domain. Multilingual or mixed-language entries are detected and
+either translated to a common language or excluded from the corpus to maintain
+consistency. This step minimizes linguistic noise that could otherwise mask or distort
+the patterns of similarity emerging from recursive training dynamics.
+Next,thedatasetisfilteredbasedonsource-typesimilarity.Dataoriginatingfrom
+distinct platforms or content categories (e.g., news articles, social media posts, and
+academic papers) exhibit inherently different stylistic and structural properties.
+Ifsuchheterogeneityisnotcontrolledfor,itmayintroducewhatcanbetermedas
+irreducible diversity—a baseline level of variation independent of the recursive gener-
+ativecontaminationunderstudy.Controllingforthisfactorensuresthatanyobserved
+reductionindiversityovertimeisattributabletorecursivemodeltrainingratherthan
+cross-domain variability.
+7
+These operations convert the cleaned corpus into a structured and machine-
+readable form suitable for subsequent embedding generation and diversity metric
+computation.
+4.2 Vector Embeddings
+TheembeddingsweregeneratedusingTransformer-basedarchitectures.Thesemodels
+were chosen due to their documented ability (Singh and Behera 2022; Islam et al.
+2024) to capture contextual relationships and semantic meaning within sentences.
+Each text input was passed through this Transformer model to obtain a high-
+dimensionalvectorrepresentation.Theoutputembeddingscapturenotonlysyntactic
+information but also semantic relationships, tone, and style of writing, enabling
+downstream models to perform context-aware tasks.
+x =f(D[i])
+i,j,k
+where f(.):D →Rm is thetransformer based encoderand D is the setof all possible
+strings.
+4.2.1 Transformers
+Transformers, introduced in (Vaswani et al. 2023), have fundamentally transformed
+the field of Artificial Intelligence through their significant contributions to Natural
+Language Processing (NLP) and the development of large language models. At the
+core of this architecture lies the self-attention mechanism, which enables the model
+to examine every word or token within an input sequence and determine the relative
+importanceofeachinrelationtoothers.ATransformeriscomposedofmultiplestacked
+layers of these attention blocks, where each layer progressively refines the model’s
+understanding of the input. Lower layers primarily capture syntactic structures such
+asgrammar,whereashigherlayersabstractdeepersemanticrepresentations,including
+meaningandintent.ThefoundationalstructureofaTransformerconsistsoftwomain
+components:anencoderandadecoder.However,incertainapplications—suchastext
+embedding and representation learning, only the encoder is employed to convert text
+into dense vector representations. In contrast, generative language models typically
+utilize both the encoder and decoder to produce coherent and contextually relevant
+sequences of words.
+In this study, the encoder component of the Transformer model was employed to
+generatevectorembeddingsfromtextualdata.Byleveragingmulti-headself-attention,
+theencodereffectivelycapturedsemanticandsyntacticdependenciesacrosssentences,
+producing context-rich and pattern-based representations suitable for downstream
+analysis.
+8
+Fig.1 SchematicRepresentationofaTransformerEncoder”BERT”,Amulti-layerattention-based
+architecture,whoseprocessingcanbesummarizedasasequenceofMulti-HeadAttention,Residual
+AdditionandNormalization,andFeed-ForwardlayersrepeatedNtimes.Thisisalsothetransformer
+usedforthiswork.Imagesourcedfrom(Castelluccietal.2019)
+4.3 Similarity Analysis
+In this study, cosine distance is employed as the primary metric for quantifying
+semantic similarity between textual embeddings. The Cosine Distance uses the vector
+embeddings of the textual information generated by the transformer-based encoder.
+The Cosine Distance will be calculated as
+xT x
+q = i,j i,k
+i,j,k ||x ||||x ||
+i,j i,k
+where,
+||.|| represents the 2-norm of any vector
+Notation defined in Section 2.
+In this notation, q ∈[0,1], where
+i,j,k
+• q =0 represents ”zero” relevance between vectors x and x
+i,j,k i,j i,k
+• q =1 represents ”same contextual meaning” between vectors x and x .
+i,j,k i,j i,k
+• 0<q <1 represents partial relevance between the vectors x ,x , the greater
+i,j,k i,j i,j
+this quantity, the greater the similarity between both these vectors.
+Cosinedistancehaslongbeenrecognizedasaneffectivemeasureforquantifyingthe
+relevancebetweentwovectorrepresentations.Ithasbeenextensivelyappliedinvarious
+domains, including information retrieval, search engine ranking, and query matching
+operations,suchasthoseemployedbyGoogleSearchtoretrievesemanticallyrelevant
+results. This widespread adoption underscores the suitability of cosine distance as a
+9
+metricforassessingsimilarityintextualdata.Furthermore,theeffectivenessofcosine-
+basedsimilarityhasbeenthesubjectofextensiveanalysisandvalidation(Stecketal.
+2024; Gunawan et al. 2018; Park et al. 2020; Ahad et al. 2016; Thada and Jaglan
+2013) within the academic community, establishing it as a reliable and interpretable
+measure for evaluating semantic relationships between embeddings.
+The theoretical foundation for this choice lies in the attention mechanism that
+drives Transformer architectures. Both self-attention and cross-attention operate by
+comparingvectorrepresentations,referredtoasqueriesandkeys,todeterminetherel-
+evancebetweentokens.Thisprocessisformalizedasthescaleddot-productattention,
+as described in Vaswani et al. (2023).
+(cid:18) QKT(cid:19)
+Attention=softmax √ V
+d
+k
+where,
+Q is the query vector,
+K is the key vector,
+V is the value vector,
+d is the dimension of K
+k
+4.3.1 Intuition
+The vector generating encoder models are trained within an unsupervised
+encoder–decoder configuration, with the objective of minimizing information loss
+between the input sequence and its reconstructed output. During training, the Trans-
+former iteratively adjusts the parameters of its self-attention and cross-attention
+layers—namely, the query, key, and value matrices—so that semantically or contex-
+tually related tokens consistently produce higher attention scores. Over successive
+iterations, this optimization encourages words and phrases that frequently co-occur
+or share similar semantic roles to occupy proximal regions in the embedding space.
+Consequently, the decoder’s cross-attention modules, which also rely on cosine-based
+similarity, learn to recognize and attend to related information encoded in nearby
+vector directions, thereby reducing the difference between the input and the recon-
+structed output—even when expressed through different linguistic forms. Conversely,
+unrelated terms diverge spatially, reinforcing a geometric organization of linguistic
+relevance within the learned representation space.
+5 Experiment
+This section presents the practical implementation of the proposed similarity analysis
+framework. Textual data were encoded using a Transformer-based model to generate
+high-dimensionalembeddingsthatcapturebothcontextualandsemanticinformation.
+Cosine distance was then applied to these embeddings to quantify the degree of simi-
+larity between text pairs. The analysis aims to validate whether the similarity within
+the data increases as a result of growing pollution in datasets caused by the presence
+of AI-generated content. The code to reproduce this is publicly available on GitHub,
+referenced. The code was executed on a machine equipped with an Intel Ultra 9 155H
+10
+Processor, aided by a CUDA-enabled Nvidia RTX 4070 graphics processor with 32
+GB of memory.
+5.1 Dataset and Preprocessing
+For this study, the Common Crawl database(Rana 2010) was selected, because it
+providesyear-wisecorpora,allowingustotracktheevolutionofsimilaritymetricsover
+time and analyze the potential timeline of AI model collapse. The Common Crawl
+dataset is a large-scale web crawl of publicly available websites, hosted on AWS, and
+distributed as wget and index files that can be easily processed using various Python
+libraries.
+During preprocessing, it is essential to acknowledge that the Common Crawl con-
+tains content in multiple languages and from a diverse set of websites. As discussed
+in the previous section, such diversity can obscure the emerging patterns of similar-
+ity that result from the increasing presence of AI-generated content. To mitigate this
+masking effect, we filter the dataset to include only English-language websites and
+furtherisolatearticlesfromWikipedia(WikimediaFoundation2025).Thisrestriction
+ensures that the data primarily originates from a consistent group of human authors,
+thereby reducing but not eliminating irreducible diversity, helping prevent it from
+overshadowing the developing similarity trends.
+In this study, source-based filtering was performed by isolating crawl paths that
+contained “wikipedia.com” as the domain. Language-based filtering was subsequently
+applied using the pycld2 library (AboSamoor 2025) to exclude all non-English data.
+Since domain-based filtering is computationally less intensive than language-based
+filtering, the algorithm first extracted articles originating from the Wikipedia domain
+and then verified their language. To further minimize computational overhead, the
+language detection process was limited to the first 2000 words of each webpage. If
+these initial words were identified as English, the entire document was assumed to be
+written in English.
+5.2 Vector Embeddings and Cosine Similarity
+The Vector embeddings were created by a pretrained Transformer model imported
+through sentence-transformer from HuggingFace (Wolf et al. 2020). The pre-trained
+weights of ”BAAI/bge-large-en-v1.5” (Xiao et al. 2023), a transformer-based embed-
+ding model optimized for semantic similarity and retrieval tasks. The model projects
+each text input into a 1024-dimensional embedding space, where contextual and
+semantic information is preserved geometrically, as shown with transformer-based
+models in Section 4. It is trained using contrastive learning, aligning semantically
+similar sentence pairs while pushing dissimilar pairs apart. The resulting embeddings
+exhibitstrongclusteringbehaviorfortextswithsharedmeaning,tone,ororigin.This
+propertyisparticularlysuitableforidentifyingsemanticredundancyandpotentialAI-
+generated content through similarity. The use of bge-large-en-v1.5 ensures sensitivity
+tonuancedcontextualrelationshipswhilemaintainingrobustnessagainstsurface-level
+11
+0.42
+0.4
+0.38
+0.36
+2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025
+Year
+ytiralimiS
+enisoC
+egarevA
+Average Similarity
+Fit Model 0.35+0.0935(1−e−0.1029(x−2013))
+Fig. 2 Average cosine similarity from 2013 to 2025 showing an increasing trend in homogene-
+ity driven by Synthetic AI generated textual data, that has significantly increased after the 2017
+breakthrough in Natural Language processing using transformers and then the public adoption of
+TransformerbasedLLMslikeChatGPTAPI(Brownetal.2020;Radfordetal.2019)inlate2022.
+lexicalvariations,therebyenablingthereliabledetectionofsimilaritypatternsindica-
+tive of AI pollution in text datasets. The model and encoding process were run on a
+GPU to take advantage of parallel computing through CUDA.
+Each dataset entry is transformed into a fixed-length vector representation using
+the encoder, after which cosine similarity (q ) is computed pairwise across embed-
+i,j,k
+dingstoquantifysemanticoverlapusingNumPy(Harrisetal.2020).Thentheaverage
+similarity is calculated for generalizing the whole database (q ).
+i
+5.3 Results and Discussion
+After computing the average similarity values, the results were visualized to better
+illustrate the observed trends. Figure 2 presents the variation of average similarity
+acrossdifferenttimeperiods,highlightingthegradualincreaseintextualhomogeneity
+within the datasets analyzed.
+Figure 2 presents a clear upward trend in the similarity measurements, indicating
+a gradual yet consistent increase in the homogeneity of textual data over time. This
+trend suggests that the linguistic and semantic diversity within large-scale text cor-
+pora is diminishing. Such a pattern is strongly correlated with the rapid proliferation
+of AI-generated content in the public web domain. Notably, a significant increase can
+beobservedaroundtheyear2019-2021,theperiodmarkingtheintroductionoftrans-
+former architecture, development of transformer-based language models, and public
+release and widespread adoption of Large Language Models (LLMs) with GPT-2 and
+GPT-3 released during 2019 and 2021 (Radford et al. 2019; Brown et al. 2020).
+12
+Anoticeableincreaseinsimilaritycanalsobeobservedevenbeforethewidespread
+public adoption of Large Language Models (LLMs). This early rise can be attributed
+to the use of earlier neural architectures such as Long Short-Term Memory (LSTM)
+networks, Recurrent Neural Networks (RNNs), and other language models that were
+deployed by various websites for tasks like translation, summarization, and text nor-
+malization. However, since these technologies were not adopted on a large scale, their
+overall impact on global linguistic homogeneity remained relatively limited.
+The acceleration of homogeneity beyond this point implies that the increasing
+prevalenceofAI-generatedtextisinfluencingthenaturalvariabilityofonlinecontent.
+This phenomenon aligns closely with the Forgetting the Tails effect described in prior
+theoretical work (Dohmatob et al. 2024; Shumailov et al. 2024), wherein iterative
+training on AI-influenced data leads to a collapse of diversity and the gradual erosion
+of rare or unique features within the data distribution. This also leads to a reduction
+in the ratio of parameters to that of the equivalent number of data points if all data
+points were diverse, leading to an overfit model that might fail if given unseen and
+novel problems and data.
+For the estimation of the projected timeline, we fit the obtained empirical data to
+an exponential growth-based function, denoted as y (cid:55)→ h(y) : R → R, where y ∈ R
+represents the input year and h(y) corresponds to the estimated data diversity or
+similarity metric. The parametric form of this function is defined as
+(cid:16) (cid:17)
+h(y)=h +a 1−e−b(y−y0) ,
+0
+Where h and y represent the approximate baseline values for data diversity and
+0 0
+thestartingyear,respectively.Whilethesecanalsobetreatedasfreeparameters,they
+are fixed in this analysis to reduce model complexity, given the limited availability
+of historical data for robust generalization. The remaining parameters, a and b, are
+determined empirically based on the dataset.
+The parameters were estimated using gradient descent optimization(Shi and Iyen-
+gar 2019) implemented via the SciPy library (Virtanen et al. 2020), by minimizing
+the Euclidean loss function:
+L= (cid:88) (q −h(y ))2,
+i i
+D
+where q represents the observed similarity and h(y ) is the model prediction for
+i i
+the corresponding year y .
+i
+Using the available data, the fitted function is obtained as:
+(cid:16) (cid:17)
+h(y)=0.35+0.0935 1−e−0.1029(y−2013) .
+Thisfunctionmodelsthegradualincreaseinaveragesimilarityovertime,capturing
+the observable rise in homogeneity across datasets. Based on this fitted model, the
+projectedyearscorrespondingto90%,95%,and99%saturationlevelsaresummarized
+in Table 5.3.
+Remark: For x% saturation, we calculate the possible y for which 1 −
+e−0.1029(y−2013) = x
+100
+13
+Therefore, at this level and pattern of generation, AI model collapse is predicted to
+Saturation Level Year
+90% 2035
+95% 2042
+99% 2057
+Table I Estimatedyearsat
+whichthemodelreaches
+differentsaturationlevelsof
+similarity.
+occur after 2035.
+5.4 Limitations
+This estimation should be interpreted as a preliminary projection based on currently
+available data. It does not account for the potential acceleration in data generation
+resulting from the development and widespread adoption of more powerful future AI
+systems.Theformulationofincreasinglycapablefoundationmodels,multimodalarchi-
+tectures, or other disruptive technologies could dramatically alter the rate at which
+synthetic data is produced (Similar the captured rise in rate of generation seen after
+theintroductionoftransformersbyVaswanietal.(2023)in2017-2021),therebyshift-
+ing the projected timeline for model saturation or collapse. Furthermore, given that
+the large-scale public deployment of generative AI models began only in recent years,
+the amount of empirically verifiable data remains limited. Consequently, this analy-
+sis should be viewed as an initial approximation that captures the present observable
+trends rather than a definitive prediction. As the field evolves and richer datasets
+become available, subsequent research will be necessary to refine these estimates and
+assess the long-term trajectory of linguistic and semantic homogeneity in training
+corpora.
+It is also important to note that this early estimate is inherently noisy due to the
+presence of irreducible diversity in natural language data. Variations in the number
+of samples within each year’s corpus can influence the degree to which this diver-
+sity affects the computed similarity. As a result, minor fluctuations in the similarity
+trend—visible in the figure—may be attributed to these random sampling effects
+rather than underlying semantic convergence.
+Theempiricalevidencedemonstratedinthefigurethussubstantiatesthesetheoret-
+icalpredictions,showingthatthedatacurrentlybeingusedfortrainingcontemporary
+models already exhibit measurable signs of this collapse. In essence, the observed rise
+in similarity metrics provides a tangible reflection of how the feedback loop between
+AI-generated content and training datasets may be driving the ecosystem toward
+increasing uniformity and reduced informational richness.
+6 Conclusion
+Thisstudypresentsanempiricalframeworkforanalyzingtheevolutionoftextualsim-
+ilarity in large-scale web corpora, using the filtered Common Crawl dataset, as shown
+14
+inSection5,asaproxyforanydatabase.ByencodingtextthroughTransformer-based
+embeddings and applying cosine similarity as a measure of homogeneity, the analy-
+sis revealed a consistent upward trend in linguistic and semantic uniformity over the
+years. This finding aligns with recent theoretical predictions (Dohmatob et al. 2024;
+Shumailovetal.2024)ofModel Collapse,whereinsuccessivegenerationsofAImodels
+trained on synthetic data exhibit reduced diversity and information richness.
+The data-based exponential model indicates that average similarity has been
+steadily increasing since 2013, with a significant acceleration from 2018 to 2022,
+coinciding with the public release of large language models by OpenAI, the GPT-
+2(Radford et al. 2019) and GPT-3(Brown et al. 2020) models. Extrapolating from
+the approximation suggests that the ecosystem may reach 90%, 95%, and 99% satu-
+ration around 2035, 2042, and 2058, respectively. These milestones represent critical
+thresholds beyond which the dominance of AI-generated content could begin to self-
+reinforce, diminishing the diversity of future training datasets, and estimating the
+phenomenon of model collapse to occur at a 90% or greater similarity rate, which
+means the approximate time of collapse of AI models will be 2035
+The study also emphasizes that these projections are preliminary. The estimates
+do not yet account for the rapidly evolving landscape of generative technologies
+or the emergence of new modalities, which may either exacerbate or mitigate data
+homogenization. Furthermore, the limited temporal depth of currently available data
+constrains the precision of long-term predictions. Future research should extend this
+work by integrating multi-modal datasets, analyzing the effects of current techniques
+to mitigate this phenomenon, such as adaptive feedback between human and syn-
+thetic content generation, and developing mechanisms to preserve data diversity in
+large-scale AI ecosystems.
+Insummary,thisstudyprovidesanearlyquantitativesignalsupportingtheoretical
+concernsaboutrecursivedatapollutionandthelong-termsustainabilityofgenerative
+AI.Continuousmonitoringofdatadiversitymetrics,coupledwithresponsibledataset
+curation, will be essential to ensure that AI development remains grounded in the
+creative and heterogeneous essence of human knowledge.
+Acknowledgment
+TheauthorsthanktheUnitedStatesArmyand,NationalScienceFoundationfortheir
+supportinthesepreliminaryinvestigationsresultingintheanalysisofthisstudy.The
+authors also thank their parents, colleagues, and various other students and faculty
+for their suggestions.
+References
+AboSamoor M (2025) pycld2: Python bindings to the compact language detector 2.
+URL https://github.com/aboSamoor/pycld2
+AhadA,FayazM,ShahAS(2016)Navigationthroughcitationnetworkbasedoncon-
+tent similarity using cosine similarity algorithm. International Journal of Database
+Theory and Application 9(5):9–20
+15
+Billal B, Fonseca A, Sadat F (2016) Efficient natural language pre-processing for ana-
+lyzing large data sets. In: 2016 IEEE International Conference on Big Data (Big
+Data), pp 3864–3871, https://doi.org/10.1109/BigData.2016.7841060
+Brown T, Mann B, Ryder N, et al (2020) Language models are few-shot
+learners. In: Larochelle H, Ranzato M, Hadsell R, et al (eds) Advances
+in Neural Information Processing Systems, vol 33. Curran Associates, Inc.,
+pp 1877–1901, URL https://proceedings.neurips.cc/paper files/paper/2020/file/
+1457c0d6bfcb4967418bfb8ac142f64a-Paper.pdf
+Castellucci G, Bellomaria V, Favalli A, et al (2019) Multi-lingual intent detection
+andslotfillinginajointbert-basedmodel.URLhttps://arxiv.org/abs/1907.02884,
+arXiv:1907.02884
+CroitoruFA,HondruV,IonescuRT,etal(2023)Diffusionmodelsinvision:Asurvey.
+IEEE Transactions on Pattern Analysis and Machine Intelligence 45(9):10850–
+10869. https://doi.org/10.1109/TPAMI.2023.3261988
+DohmatobE,FengY,SubramonianA,etal(2024)Strongmodelcollapse.URLhttps:
+//arxiv.org/abs/2410.04840, arXiv:2410.04840
+EveryPixel Journal (2024) Ai image statistics 2024: How many ai images exist.
+https://journal.everypixel.com/ai-image-statistics, accessed: 2025-10-13
+G.S. T, Hariprasad Y, Iyengar S, et al (2022) An extension of synthetic minority
+oversampling technique based on kalman filter for imbalanced datasets. Machine
+Learning with Applications 8:100267. https://doi.org/10.1016/j.mlwa.2022.100267,
+URL https://www.sciencedirect.com/science/article/pii/S266682702200010X
+Gunawan D, Sembiring CA, Budiman MA (2018) The Implementation of Cosine
+Similarity to Calculate Text Relevance between Two Documents. Journal of
+Physics: Conference Series 978(1):012120. https://doi.org/10.1088/1742-6596/978/
+1/012120, URL https://doi.org/10.1088/1742-6596/978/1/012120, publisher: IOP
+Publishing
+Harris CR, Millman KJ, van der Walt SJ, et al (2020) Array programming with
+NumPy. Nature 585(7825):357–362. https://doi.org/10.1038/s41586-020-2649-2,
+URL https://doi.org/10.1038/s41586-020-2649-2
+Ho J, Jain A, Abbeel P (2020) Denoising diffusion probabilistic models. URL https:
+//arxiv.org/abs/2006.11239, arXiv:2006.11239
+Holzner T, Maier F, Feuerriegel S (2025) Generative ai and creativity: A systematic
+literature review and meta-analysis. arXiv preprint arXiv:250517241 URL https:
+//arxiv.org/abs/2505.17241, accessed: 2025-10-13
+16
+Islam S, Elmekki H, Elsebai A, et al (2024) A comprehensive survey on appli-
+cations of transformers for deep learning tasks. Expert Systems with Appli-
+cations 241:122666. https://doi.org/https://doi.org/10.1016/j.eswa.2023.122666,
+URL https://www.sciencedirect.com/science/article/pii/S0957417423031688
+Iyengar SS, Nabavirazavi S, Hariprasad Y, et al (2025a) The Convergence of
+AI/MLandCybersecurity:AdvancingDigitalForensicTechniques,SpringerNature
+Switzerland, Cham, pp 139–159. https://doi.org/10.1007/978-3-031-89327-8 4,
+URL https://doi.org/10.1007/978-3-031-89327-8 4
+Iyengar SS, Nabavirazavi S, Hariprasad Y, et al (2025b) Future of AI-Driven Digi-
+tal Forensics, Springer Nature Switzerland, Cham, pp 335–364. https://doi.org/10.
+1007/978-3-031-89327-8 11, URL https://doi.org/10.1007/978-3-031-89327-8 11
+Kumar A (2024) Fun fact: Ai creates about 34 million images every sin-
+gle day. https://amitkumar2211.medium.com/fun-fact-ai-creates-about-34-million-
+images-every-single-day-99a7bbd0fd63, medium Blog Post, Accessed: 2025-10-13
+Liang W, Zhang Y, Codreanu M, et al (2025) The widespread adoption of large lan-
+guagemodel-assistedwritingacrosssociety.URLhttps://arxiv.org/abs/2502.09747,
+arXiv:2502.09747
+Naveed H, Khan AU, Qiu S, et al (2025) A comprehensive overview of large language
+models. ACM Transactions on Intelligent Systems and Technology 16(5):1–72
+Ng A, Laird D, He L (2022) Data-centric ai competition. https://https-deeplearning-
+ai.github.io/data-centriccomp/, retrieved: 2022-12-04
+Northcutt C, Jiang L, Chuang I (2021) Confident learning: Estimating uncertainty in
+dataset labels. Journal of Artificial Intelligence Research 70:1373–1411
+Oksanen A, Kankainen T, Laine S (2023) Artificial intelligence in fine arts: A
+systematic review of empirical research. Artificial Intelligence and the Arts 1:1–
+21. https://doi.org/10.1016/j.artint.2023.100001, URL https://www.sciencedirect.
+com/science/article/pii/S294988212300004X
+OpenAI, Achiam J, Adler S, et al (2024) Gpt-4 technical report. URL https://arxiv.
+org/abs/2303.08774, arXiv:2303.08774
+Park K, Hong JS, Kim W (2020) A methodology combining cosine similarity with
+classifier for text classification. Applied Artificial Intelligence 34(5):396–411. https:
+//doi.org/10.1080/08839514.2020.1723868
+Peterson AJ (2025) Ai and the problem of knowledge collapse. AI & SOCIETY
+40(5):3249–3269. https://doi.org/10.1007/s00146-024-02173-x, URL http://dx.doi.
+org/10.1007/s00146-024-02173-x
+17
+Radford A, Wu J, Child R, et al (2019) Language models are unsupervised multitask
+learners. OpenAI blog 1(8):9
+Ramesh A, Pavlov M, Goh G, et al (2021) Zero-shot text-to-image generation. URL
+https://arxiv.org/abs/2102.12092, arXiv:2102.12092
+RameshA,DhariwalP,NicholA,etal(2022)Hierarchicaltext-conditionalimagegen-
+eration with clip latents. URL https://arxiv.org/abs/2204.06125, arXiv:2204.06125
+RanaA(2010)Commoncrawl–buildinganopenweb-scalecrawlusinghadoop.URL
+https://www.slideshare.net/hadoopusergroup/common-crawlpresentation
+RombachR,BlattmannA,LorenzD,etal(2022)High-resolutionimagesynthesiswith
+latent diffusion models. URL https://arxiv.org/abs/2112.10752, arXiv:2112.10752
+RyanLawTSXibeijiaGuan(2025)Percentageofnewwebcontentthatisai-generated.
+https://ahrefs.com/blog/what-percentage-of-new-content-is-ai-generated/
+Schuhmann C, Beaumont R, Vencu R, et al (2022) Laion-5b: An open large-scale
+datasetfortrainingnextgenerationimage-textmodels.URLhttps://arxiv.org/abs/
+2210.08402, arXiv:2210.08402
+Shi B, Iyengar SS (2019) Mathematical Theories of Machine Learning – The-
+ory and Applications, 1st edn. Springer Cham, Cham, https://doi.org/10.1007/
+978-3-030-17076-9,URLhttps://doi.org/10.1007/978-3-030-17076-9,published:12
+June 2019 (eBook), 26 June 2019 (Hardcover), 14 August 2020 (Softcover)
+Shumailov I, Shumaylov Z, Zhao Y, et al (2024) Ai models collapse when
+trained on recursively generated data. Nature 631:755–759. https://doi.org/10.
+1038/s41586-024-07566-y, URL https://doi.org/10.1038/s41586-024-07566-y
+SingaramJ,IyengarSS,MadniAM(2024)DeepLearningNetworks,1stedn.Springer
+Cham, Cham, https://doi.org/10.1007/978-3-031-39244-3, URL https://doi.org/
+10.1007/978-3-031-39244-3, published: 01 November 2023 (eBook), 02 November
+2023 (Hardcover), 02 November 2024 (Softcover)
+Singh PN, Behera S (2022) The transformers’ ability to implement for solving
+intricacies of language processing. In: 2022 2nd Asian Conference on Innovation
+in Technology (ASIANCON), pp 1–7, https://doi.org/10.1109/ASIANCON55314.
+2022.9909423
+Soni J, Gurappa S, Upadhyay H (2024) A comparative study of deep learning models
+for image super-resolution across various magnification levels. In: 2024 IEEE Inter-
+national Conference on Future Machine Learning and Data Science (FMLDS), pp
+395–400, https://doi.org/10.1109/FMLDS63805.2024.00076
+18
+SpennemannDH(2025)Delvinginto:thequantificationofai-generatedcontentonthe
+internet(syntheticdata).URLhttps://arxiv.org/abs/2504.08755,arXiv:2504.08755
+Staff EUN (2025) Survey: 52% of u.s. adults now use large language models
+like chatgpt. https://www.elon.edu/u/news/2025/03/12/survey-52-of-u-s-adults-
+now-use-ai-large-language-models-like-chatgpt/
+SteckH,EkanadhamC,KallusN(2024)Iscosine-similarityofembeddingsreallyabout
+similarity?In:CompanionProceedingsoftheACMWebConference2024.Associa-
+tionforComputingMachinery,NewYork,NY,USA,WWW’24,p887–890,https://
+doi.org/10.1145/3589335.3651526, URL https://doi.org/10.1145/3589335.3651526
+TangY,ZhangN,CianciaM,etal(2024a)Exploringtheimpactofai-generatedimage
+toolsonprofessionalandnon-professionalusersintheartanddesignfields.In:Com-
+panion Publication of the 2024 Conference on Computer-Supported Cooperative
+WorkandSocialComputing.AssociationforComputingMachinery,NewYork,NY,
+USA,CSCWCompanion’24,p451–458,https://doi.org/10.1145/3678884.3681890,
+URL https://doi.org/10.1145/3678884.3681890
+Tang Y, Zhang N, Ciancia M, et al (2024b) Exploring the impact of ai-generated
+image tools on professional and non-professional users in the art and design fields.
+URL https://arxiv.org/abs/2406.10640, arXiv:2406.10640
+Thada V, Jaglan V (2013) Comparison of jaccard, dice, cosine similarity coefficient
+to find best fitness value for web retrieved documents using genetic algorithm.
+International Journal of Innovations in Engineering and Technology 2(4):202–205
+Vaswani A, Shazeer N, Parmar N, et al (2023) Attention is all you need. URL https:
+//arxiv.org/abs/1706.03762, arXiv:1706.03762
+VirtanenP,GommersR,OliphantTE,etal(2020)Scipy1.0:fundamentalalgorithms
+forscientificcomputinginpython.NatureMethods17(3):261–272.https://doi.org/
+10.1038/s41592-019-0686-2, URL http://dx.doi.org/10.1038/s41592-019-0686-2
+Wang Y, Zhou Z, Tan X, et al (2024) Unveiling the potential of progressive
+training diffusion model for defect image generation and recognition in indus-
+trial processes. Neurocomputing 592:127837. https://doi.org/https://doi.org/10.
+1016/j.neucom.2024.127837, URL https://www.sciencedirect.com/science/article/
+pii/S0925231224006088
+Wikimedia Foundation (2025) Wikipedia: The free encyclopedia.
+https://www.wikipedia.org/, retrieved October 12, 2025, from Wikimedia
+Foundation, San Francisco, CA
+WolfT,DebutL,SanhV,etal(2020)Huggingface’stransformers:State-of-the-artnat-
+urallanguageprocessing.URLhttps://arxiv.org/abs/1910.03771,arXiv:1910.03771
+19
+Xiao S, Liu Z, Zhang P, et al (2023) C-pack: Packaged resources to advance general
+chinese embedding. arXiv:2309.07597
+20

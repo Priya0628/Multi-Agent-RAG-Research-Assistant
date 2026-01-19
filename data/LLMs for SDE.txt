@@ -1,0 +1,720 @@
+
+Walking the Tightrope of LLMs for Software Development: A Practitioners' Perspective
+Samuel Ferino, Rashina Hoda, John Grundy, Christoph Treude
+
+Abstract--Background: Large Language Models emerged with the potential of provoking a revolution in software development (e.g., automating processes, workforce transformation). Although studies have started to investigate the perceived impact of LLMs for software development, there is a need for empirical studies to comprehend how to balance forward and backward effects of using LLMs.
+Objective: We investigated how LLMs impact software development and how to manage the impact from a software developer's perspective. Method: We conducted 22 interviews with software practitioners across 3 rounds of data collection and analysis, between October (2024) and September (2025). We employed socio-technical grounded theory (STGT) for data analysis to rigorously analyse interview participants' responses. Results: We identified the benefits (e.g., maintain software development flow, improve developers' mental model, and foster entrepreneurship) and disadvantages (e.g., negative impact on developers' personality and damage to developers' reputation) of using LLMs at individual, team, organisation, and society levels; as well as best practices on how to adopt LLMs. Conclusion: Critically, we present the trade-offs that software practitioners, teams, and organisations face in working with LLMs. Our findings are particularly useful for software team leaders and IT managers to assess the viability of LLMs within their specific context.
+
+Index Terms-Software Engineering, Artificial Intelligence, Large Language Models, Socio-Technical Grounded Theory, Interviews
+?
+
+
+
+1 INTRODUCTION
+"There is nothing permanent except change." - Heraclitus
+   This quote by the Greek philosopher Heraclitus highlights how the world is continuously changing. Large Language Models (LLMs) are the contemporary catalyst for a revolution in the Information Technology sector [1], starting from the release of LLM tools like ChatGPT and GitHub Copilot for the general public between 2022 and 2023 [2], [3]. LLM-powered code generators and assistants like GitHub Copilot, for instance, fostered the emergence of a new potential pillar for software development: AI pair programming [4], [5]. LLMs can support a variety of software development tasks, such as code generation and information retrieval [6]-[8]. Enterprise LLM adoption reports from McKinsey
+[9] and DORA [10], [11] call attention to growing interest from companies in examining the potential of LLMs for software development. There is also a growing shift from traditional Q&A online communities like Stack Overflow towards LLM tools as the first source of support [1], [12]. For instance, the decline in networking traffic of Stack Overflow may be attributed to developers adopting LLMs [13].
+   Many investigations (e.g., [14]-[17]) highlight the potential benefits associated with software practitioners adopting LLMs. For instance, Cui et al. [15] found software developers using GitHub Copilot achieving an increase of 26.08% in the number of weekly completed tasks when conducting an experiment with almost five thousand software developers from companies including Microsoft and Accenture. On the other hand, many studies (e.g., [18]-[21]) present the downsides of using LLMs. For instance, Lee et al. [20]
+
+ï S. Ferino, R. Hoda, and J. Grundy are with the Faculty of Information Technology,  Monash  University,  Melbourne,  Australia. E-mail:
+{samuel.demouraferino, rashina.hoda, john.grundy}@monash.edu
+
+ï C. Treude is with the School of Computing and Information Systems, Singapore Management University, Singapore. E-mail: ctreude@smu.sg
+
+observed from surveying 319 knowledge workers that LLMs can potentially affect software developers' critical thinking skills.
+   Although there is an emerging amount of studies related to LLMs in Software Engineering (SE) [6], [22], there is still a need for investigations focusing on managing the impact of LLMs. Mohamed et al. [23] conducted a systematic literature review on how LLMs affect software developer productivity. From their thirty-seven selected studies, they summarised most benefits and risks concerning how LLMs affect software developer productivity, such as supporting knowledge acquisition and promoting over- reliance, disruptions to developer flow. They highlight that few studies explore aspects involving communication and human- human collaboration. Ferino et al. [24] conducted a systematic review exploring novice software developers' adoption and use of LLMs in SE activities. From their 80 selected studies, they identified many research gaps, such as exploring the impact of LLMs on mentorship interactions.
+   To gain more understanding about the impact of LLMs in SE tasks and especially how to manage it, our investigation focused on answering this main question: How does the use of LLMs for software development impact software practitioners? This question was decomposed into the following research questions (RQs):
+RQ1. How do LLMs take software developers forward? - Taking developers forward involves benefits gained from using LLMs. RQ2. How do LLMs hold software developers back? - Holding developers back involves disadvantages arising from using LLMs. RQ3. How do software developers achieve a balanced use of LLMs?
+   To answer these RQs, we conducted twenty-two semi-structured interviews with software practitioners across three rounds - be- tween October (2024) and September (2025). Our study aims to comprehend the current industrial perspective on software developers adopting Large Language Model-based tools on SE-
+
+
+
+
+Fig. 1: Study methodology.
+
+
+related activities, which involves exploring the benefits, challenges, limitations, and recommendations shared by software practitioners involved in SE-related activities. Our analysis reveals the following main benefits: (B1) reduced effort due to LLMs as a foundation to boost code development and perceived saving time; (B2) flow experience when LLMs mitigate interruptions and automate simple and tedious tasks; (B3) interaction with LLMs influencing developers' personality and creating a safe space; and (B4) LLMs promoting LLM entrepreneurship as a consultant for every (not complex) question; and these disadvantages: (D1) disruption of the development flow due to an increase in developers' effort influenced by LLMs; (D2) reduced effort due to LLMs negatively impacting developers' personality (e.g., laziness) and hindering developers' skills; (D3) interaction with LLMs reducing mentorship opportunities. The main contributions of this research include:
+ï Identification and categorisation of benefits and disadvantages of adopting LLMs for software development tasks in terms of individual, team, organisation, and society level.
+ï A set of recommendations on how to best use LLMs for software development tasks.
+
+2 METHODOLOGY
+This study aims to comprehend the current industrial perspective on the impact of software practitioners adopting Large Language Model-based tools for SE-related activities. By employing the socio-technical grounded theory (STGT) for data analysis [25], we conducted three rounds of data collection and analysis involving interviews1 with 22 software practitioners. Figure 1 provides an overview of our study methodology. In our first round, we conducted six interviews with novice software practitioners. In our second round, we conducted interviews with thirteen novice and experienced software practitioners, resulting in the emergence of concepts and categories. Finally, we interviewed three more software practitioners during the third round of data collection and analysis, with the aim of consolidating our findings. The supplementary material includes the pre-interview questionnaire, interview guide, STGT example, assumption list, and LLM capabilities, and is available online [26].
+
+2.1 Why Socio-Technical Grounded Theory (STGT)?
+In the face of many other qualitative research methods (e.g., thematic analysis, content analysis), we choose STGT, a variation
+1. Approved by Monash Human Research Ethics Committee (No. 44875)
+
+of Grounded Theory (GT) [25], [27]. While STGT also includes human and social aspects similar to GT, it also acknowledges the importance of technical knowledge - a very relevant aspect of software engineering research - enabling more profound insights. In fact, STGT stands out as a research method suitable for topics where practice-based or industry perspectives are relevant.
+   To better explain the importance of using STGT in our context, we will explain our research topics using the four dimensions of its underlying socio-technical research framework:
+ï Socio-technical Phenomenon: Our research investigates software practitioners' perspectives on the role of LLM tools in software development. This phenomenon is characterised as socio-technical because the potential influence of individual aspects (e.g., motivations, emotions), team aspects (e.g., collaboration), and technology aspects (e.g., usability, features) can interplay on the experiences of software practitioners using LLM-powered tools.
+ï Socio-technical Domain and Actors: The domain of LLMs for SE (LLM4SE), an intersection between Software En- gineering and Artificial Intelligence, is a socio-technical domain since there is a "tight coupling between its social and technical aspects" [25], [27], [28]. The actors of this domain encompass software practitioners using LLM tools in software development, such as software developers, software engineers, data engineers, data scientists, and DevOps engineers.
+ï Socio-technical researchers: This research was conducted by combining different experiences and skills among the research team. The interviews were conducted by an early- career researcher under the supervision of three experienced researchers.
+ï Socio-technical data, tools, and techniques: During the study, the first author utilised Qualtrics survey to collect par- ticipant demographics, Zoom for recording and transcription, DeepL2 for translation of the interview transcriptions in Por- tuguese (P1, P4, P6) to English, and Nvivo and spreadsheets to support the analysis of the interview transcriptions.
+   Before starting the STGT study, it is fundamental to define how the STGT study will be conducted in terms of ontology, epistemology, and research paradigm. STGT offers flexibility in comparison with the traditional GT methods (i.e., Strauss- Corbinian GT, Glaserian GT, and Constructivist GT) with specific paradigms. Ontology is described as "What we believe exists or what we perceive as reality, in a research context" [27, Chapter 5].
+2. www.deepl.com
+
+TABLE 1: Participant Demographics.
+
+ID
+Role
+Domain
+Country of Residence
+Total Experience
+Self-Reported Level of Experience
+Round
+P1
+Software Developer
+IT
+Brazil
+3-5 Years
+Experienced
+1
+P2
+Software Engineer
+IT
+Australia
+1-2 Years
+Experienced
+1
+P3
+Software Engineer
+IT
+Australia
+3-5 Years
+Intermediate
+1
+P4
+Software Developer
+Finance
+Brazil
+3-5 Years
+Intermediate
+1
+P5
+Software Developer
+IT
+Australia
+0-0.9 Years
+Intermediate
+1
+P6
+Data Engineer
+DS/BD
+Brazil
+3-5 Years
+Highly Experienced
+1
+P7
+BI Analyst
+TELCOM
+Australia
+0-0.9 Years
+Intermediate
+2
+P8
+Software Engineer
+IT
+Australia
+1-2 Years
+Experienced
+2
+P9
+AI Engineer
+Government
+Brazil
++10 Years
+Intermediate
+2
+P10
+Software Engineer
+IT
+Canada
+6-10 Years
+Highly Experienced
+2
+P11
+Web Developer
+IT
+Australia
+3-5 Years
+Highly Experienced
+2
+P12
+Software Engineer
+Healthcare
+United States
+6-10 Years
+Experienced
+2
+P13
+Software Developer
+IT
+Australia
+1-2 Years
+Advanced Beginner
+2
+P14
+Data Engineer
+TELCOM
+Australia
+1-2 Years
+Intermediate
+2
+P15
+Researcher
+Engineering
+Australia
+0-0.9 Years
+Novice
+2
+P16
+R&D Researcher
+Gaming
+Canada
+1-2 Years
+Intermediate
+2
+P17
+Data Analyst
+IT
+Australia
+1-2 Years
+Intermediate
+2
+P18
+Software Developer
+Finance
+Finland
+3-5 Years
+Intermediate
+2
+P19
+ML Scientist
+IT
+Canada
+3-5 Years
+Experienced
+2
+P20
+Software Engineer
+IT
+Malaysia
+1-2 Years
+Intermediate
+3
+P21
+Research Engineer
+IT
+Singapore
+1-2 Years
+Experienced
+3
+P22
+Software Developer
+IT
+United States
++10 Years
+Highly Experienced
+3
+IT: Information Technology; DS/BD: Data Science/Big Data; TELCOM: Telecommunications.
+
+
+
+Our study involves participants combining physical contexts and interactions (e.g., developers collaborating in a team physically) and virtual contexts and interactions (e.g., developers working remotely). Epistemology is described as "What can be treated as knowledge and how that knowledge is gained, in a research context" [27, Chapter 5]. Since we understand that the perceptions about benefits, challenges, and recommendations involving LLM adoption are subject to interpretation, we decided to adopt a subjective epistemology approach. Research paradigm is described as "Researcher worldview about what they believe is reality (ontology) and how knowledge about that reality can be gained (epistemology), in a research context" [27, Chapter 5]. Since we are adopting a subjective epistemology approach, believing in a socially constructed reality, we decided to follow a constructivist research paradigm.
+
+2.2 Study Design and Piloting
+Based on the findings (i.e., benefits, challenges, recommendations) from our systematic literature review [24], we developed a preliminary interview guide, which also included potential follow- up questions. This interview guide [26] was improved based on discussions with the PhD supervisors, as well as feedback from an industrial collaborator, who has experience managing a software team in an Australian company. The Attitude Towards Artificial Intelligence (ATAI) scale, developed by [29], was included to collect participants' attitudes towards LLMs (AI). ATAI scale includes the following five nine-point scale questions, which we adapted to a five-point scale ranging from strongly disagree to strongly agree to facilitate the participants to answer them:
+ï 
+I fear artificial intelligence
+ï I trust artificial intelligence
+ï Artificial intelligence will destroy humankind
+ï Artificial intelligence will benefit humankind
+ï Artificial intelligence will cause many job losses
+   From our industry collaborator's feedback, we included ques- tions, for example, seeking to understand participants' perceptions of the impact of LLMs on their career trajectory or job market competitiveness in the near future. We collected participants' information regarding basic demographics, work experience, and experience with LLM tools. We also conducted two pilot interview sessions with experienced software practitioners to evaluate the interview structure - whether to adopt a pre-interview questionnaire to collect participants' information - and the clarity of the interview questions. During our pilot study, we observed that it takes only about 5-10 minutes to collect participants' information during the interview; however, we also observed that the pilot study participant who filled out a pre-interview questionnaire was more comfortable (relaxed) during the interview. We believe that while using the pre- interview questionnaire, with the interview moment focused only on the interview guide, we provided a more simplified structure for the participant. The pilot interview using a pre-interview questionnaire was not included in the analysis because this participant had no experience using LLMs for software development.
+
+2.3 Sampling
+STGT supports different sampling methods: purposive, random and convenience. Using our findings from [24] as a foundation, we began with purposive sampling in the first round, focusing on less
+
+TABLE 2: Participants' use of LLMs.
+
+Exp. (LLMs in General)	# of Practitioners	Exp. (LLM4SE)	# of Practitioners	# of Prompts per Day	# of Practitioners
+Less than 2 years	7	Less than 1 year	8	3 - 5	5
+Less than 1 year	5	Less than 2 years	5	11 - 20; 21 - 30	4
+Less than 18 months	5	Less than 6 months	4	6 - 10	3
+More than 2 years	5	Less than 18 months	3	Less than or equal to 2	2
+More than 2 years	2	50 - 100; +100	2
+ATAI Scale	Frequency*	SE Tasks supported by LLMs	# of Practitioners
+Code-related tasks	20
+Test-related tasks	11
+Documentation-related tasks	9
+Requirement-related tasks	7
+LLM tools	# of Practitioners	LLM tools	# of Practitioners	Company's AI Policy	# of Practitioners
+ChatGPT	18	Cursor	2	Allowed to use	16
+GitHub Copilot	7	Phind	2	No policy	3
+Claude	7	Mistral	2	Prohibited to use	1
+Llama	4	Jan.AI	1	I do not know	1
+Gemini	2	H2O Danube	1	Prefer not to say	1
+Perplexity	2	Continue	1
+Microsoft Copilot	2
+*Order of the bars in Frequency column of ATAI Scale graph: Strongly disagree ? Somewhat disagree ? Neither agree nor disagree ? Somewhat agree ?
+Strongly agree, followed by respective values.
+
+
+
+experienced developers with less than five years of professional experience (See Fig. 1). In the following rounds, we moved to convenience sampling, interviewing software practitioners from all levels of experience. This would support further comparison between novice and experienced developers' perceptions and experiences. We advertised this study on our professional social media, LinkedIn and X (formerly Twitter). We also recruited participants from our personal connections. Initially, we advertised our study, including a $50 (AUD) voucher gift card. However, due to potential fake participants identified based on discrepancies between their IP addresses and the countries they submitted in the pre-interview questionnaire, we got approval from the Faculty Ethical Review Committee to omit the gift card in the advertisement, and only offered it to genuine participants at the end of the interview. We adopted a snowballing approach by encouraging the participants to share our study with others.
+   The first round of interviews with six novice software practi- tioners took place between October and November (2024). Then, after changes in the interview guide, the second round of interviews with thirteen software practitioners took place between April and June (2025). The third round of interviews occurred in September (2025). The interviews were conducted and recorded via Zoom meetings, which also provided the transcriptions. Interviews were scheduled to go 40-45 minutes, but ranged from 34 to 58 minutes. We manually reviewed the transcriptions, filtered any sensitive information, and de-identified the participants.
+   Participants' demographics. Our participant pool covers a diverse range of roles, countries of residence, years of experience, and experience using LLMs. We conducted twenty-two interviews with software practitioners from Latin America, Oceania, North America, Asia, and Europe - mostly from Australia (n=10). Table 1 provides an overview of participants' demographics. Our study participants worked in different domains, such as healthcare, government, and finance. Most of the participants are males (n=14), have equal to or less than five years of professional experience (n=13), and describe their skill level as intermediate or advanced
+
+
+
+beginner (n=17).
+   Regarding their experience using LLM tools, which can influence the faced challenges and suggested solution strategies, participants reported using a variety of LLM tools. Not surprisingly, ChatGPT (n=18) was the most recurrent tool used by the interview participants. Figure 2 summarises participants' demographics information related to the adoption of LLM tools. Most of the participants (n=14) have used LLMs in general, not specifically for SE tasks, for more than one year. According to their self-report amount of daily prompts, 59% (n=13) of participants engage daily with LLMs through at least 6 prompts. Their attitudes towards LLMs captured via Attitude Towards Artificial Intelligence (ATAI) scale highlight different inclinations towards AI technologies. While mostly (n=14) strongly disagreeing or somewhat disagreeing about fearing AI, they also mostly (n=14) disagree or somewhat disagree about trusting AI. Most (n=18) somewhat agree or strongly agree that AI will benefit humanity, and somewhat disagree or strongly disagree that AI will destroy humanity (n=14). However, most participants (n=13) somewhat agree or strongly agree that AI will affect the job market, leading to job losses. With respect to their experience using LLMs for SE tasks, mostly (n=16) reported having more than six months of experience, and they use LLMs mostly for code-related tasks (n=17), such as coding and debugging. Most of the study participants (n=14) reported that their companies allow them to employ LLM tools for job responsibilities.
+   The fast-paced evolution of LLM tools compels us to examine the features available in the tools mentioned by interview partic- ipants. During our three rounds of data collection and analysis, we observed an emergence and evolution of different LLM tools (e.g., ChatGPT, Cursor) and integration with traditional tools (e.g., ChatGPT for Databricks [30], Copilot for Power BI [31]). This was also highlighted by the participants, e.g.: tlP "I've been able to see a bit of how those tools evolve during this time. [For example, GitHub] Copilot evolved from being a better autocomplete to having more tools [and features]." - P10 [Software Engineer]. Ferino et al. [24] suggest researchers investigating LLMs for SE to
+
+
+
+
+Fig. 2: Emergence of the category "Impact on using LLMs" from raw data ? codes ? concepts ? subcategories ? category through constant comparison.
+
+
+provide a snapshot of the LLM features with the intent of improving clarity of the context related to the data collection. We summarise the main features in the supplementary online package [26].
+
+2.4 Data Analysis
+One of the ways in which STGT distinguishes itself from traditional grounded theory methods is by being organised into two stages: basic stage of data collection and analysis, and advanced stage for theory development. The basic stage of data collection analysis involves conducting a lean literature review to identify research gaps, followed by data collection (e.g., survey), and open coding, constant comparison, and basic memoing for data analysis. When managed carefully, systematic literature reviews (SLRs) [24] can also be conducted. The advanced stage of theory development involves conducting targeted data collection and analysis, aiming to reach theoretical saturation, theory structuring, and a targeted literature review. Through this clear separation, STGT gives flexibility to the researcher to decide whether to proceed to the advanced stage or share and communicate the findings from the basic stage [28]. Driven by the rich and fascinating results from the basic stage, we decided to communicate the findings.
+Open Coding. The process of open coding was iteratively
+improved by the first researcher following the guidance of an STGT expert, the second author. Initially, the first author printed out one of the interviews and coded it, followed by a review and discussions with an experienced researcher. After this, the researcher coded two more interviews using Google Docs. The researcher decided to move to NVivo, instigated by its features, and spreadsheets. Before doing the open coding, and between rounds of data collection and analysis, the first author was advised to create and update an assumption list [26]. This helped to make transparent the researcher's bias.
+   Constant Comparison. By doing this, similar codes were grouped into concepts, and similar concepts under sub-categories, and similar sub-categories under categories. During this process, we drew diagrams to facilitate visualisation and insights regarding the relationship between concepts and sub-categories, and also conducted discussions between the authors. Figure 2 illustrates the emergence of the category Impact of using LLMs via constant comparison.
+   
+Memoing. While performing constant comparison, we also wrote down memos reflecting our ideas, thoughts, and key elements emerging throughout the analysis. Those memos, which encompass both interview and inter-interview levels, supported the update of the interview guide between rounds. At the interview level, we compared the participants' pre-interview questionnaire responses with their interview responses, especially concerning the ATAI scale. That information provided more context for our analysis. At the inter-interview level, we compared codes from different interview participants, which also helped to refine our concepts and sub-categories. An example of a memo "How LLMs affect developers' intuition?" is shown below. The discussion on the main insights from memoing is presented in Section 4.2.
+
+
+
+3 FINDINGS
+We found variations in the impact of software developers adopting LLMs across four levels:
+ï Impact on the Individual Level: it refers to LLMs impacting software practitioners directly;
+ï Impact on the Team Level: it involves how LLMs influence software development teams and their collaboration;
+ï Impact on the Organisation Level: it encompasses how LLMs affect entire software organisations;
+
+ï Impact on the Society Level: it refers to how LLMs affect daily life in society, not just developer communities.
+   Tables 3 and 4 illustrate the benefits and disadvantages at the individual level of using LLM tools to support software development tasks, along with the reason influencing these impacts. For instance, when using LLMs for brainstorming, it has a negative impact on developers' personalities because of overreliance on LLMs, reduction of effort, mitigation of interruptions in software development and also because of the loss of control over LLMs. Additionally, we have summarised the main benefits and disadvan- tages in Figure 3 and 4, respectively. For instance, using LLMs for debugging can boost code development, saving development time, reduce software developers' effort, and provide learning opportunities to software developers. We organised the remainder of this section by describing benefits in using LLMs (section 3.1), disadvantages in using LLMs (section 3.2), and recommendations on how to use LLMs (section 3.3). Throughout this section, we provide representative quotes to illustrate participants' experiences and viewpoints. In order to protect the privacy of our participants, we refer to the interview participants as P1-P22. Similar to Masood et al. [32], we will use some expressions to indicate the extent of the predominance. In this sense, 'few' refers to less than 25%, 'many or majority' to over 50%. Although this is not a quantitative study, it indicates how much evidence supports each theme.
+
+3.1 RQ1. How do LLMs take software developers for- ward?
+3.1.1 Individual Level
+Boosting code Development. A majority of participants (i.e., P1-P16, P18-P19, P22) mention LLMs speeding up software development by automating simple, repetitive, and tedious tasks, e.g.: tlP "You spend less time thinking about simple problems, and you spend more time thinking about complex problems" - P13 [Software Developer]. For instance, LLMs can provide the boilerplate files quickly, e.g.: tlP "I just started a new project. So okay, I'll get the initial boilerplate done quickly. So I don't need to go create multiple folders and the files and everything" - P10 [Software Engineer]. LLMs can also provide an extra boost to finish tasks quickly when stuck, e.g.: tlP "I try to show a code snippet and say [to ChatGPT]: ' I've developed it up to here, and I'd like to elaborate on it up to there. What would you do? Why?'" - P6 [Data Engineer]. Participants point out that, while developers could come up with those solutions, they would take more time, especially for novice developers, e.g.: tlP "As a software engineer, you can come up with all these solutions by yourself, but it would just take a longer period of time." - P3 [Software Engineer]. In summary, this boost in developer productivity occurs when developers rely on LLMs' capabilities, which save development time by reducing their effort and interruptions.
+   LLMs Reducing Developers' Effort. A majority of partici- pants (i.e., P1-P18, P20-P22) described scenarios where LLMs work to lighten their efforts for simple, repetitive, or tedious tasks. This happens because software practitioners hand over the control to LLMs' automation capabilities, e.g.: tlP "As I have this extension in Databricks, it makes it much easier. For example, [if] I miss a line, I miss a path, I miss a way of calling a class method, etc, it corrects it on the spot and automatically shows the button: 'Do you want me to correct it and run the cell again?'." - P6 [Data Engineer]. This mitigates interruptions in their development flow that would happen by doing it themselves, such as by filtering
+
+relevant content on Google, e.g.: tlP "If you go on to Google [...] there's a bunch of official documentation from different resources. It takes some cognitive load to pick one, and then it goes through." - P11 [Web Developer].
+    LLMs Saving Time. Most of the participants (i.e., P1-P18, P20, P22) also describe how LLMs contribute to time-saving for simple, repetitive, or tedious tasks. The perceived saving in developers' time happens due to the reduced effort provided by LLMs when the developer hands over control to LLMs, e.g.: tlP "In the past, there were several sites, Stack Overflow [...] From the moment you go looking for your question until you find it, you've already spent a lot of time." - P6 [Data Engineer]. Thus, this time-saving is correlated to the reduced effort, requiring the developer to weaken the grip over development. Otherwise, developers might not notice significant time-saving, e.g., tlP "I only use it for syntax lookup. And I don't do that very often [...] and the time it really saves me is [...] pretty much the exact same thing that I need to click into a website, load it and then scroll a little bit." - P11 [Web Developer]. At the same time, participants do not feel confident about reducing the time required for task execution during planning, e.g., tlP "Something that will normally take me 3 days [to do without LLMs help], I'm still going to say 3 days. It's not just because I have [Microsoft] Copilot doesn't mean I'm going to say: 'This will take me one day or 2 days'." - P14 [Data Engineer].
+   Gaining Learning Opportunities. Fourteen participants (i.e., P1-P4, P6-P7, P12, P14, P15, P17, P18, P20, P22) mentioned the
+potential of LLMs as an educational tool for software developers, as well as the learning opportunities from adopting LLMs. For instance, developers can search for the reason behind AI wrong suggestion, e.g.: tlP "I try to see if the wrong answer was because I didn't give enough information [...] I'll see if the prompt didn't make sense" - P1 [Software Developer]. LLMs can provide alternative solutions that can reinforce developers' solution arsenal, e.g.: tlP "LLMs will give me an essentially different perspective. Maybe this is an alternative approach, a more concise way of doing things [...] so then I can learn from them in this way." - P17 [Data Analyst], and assist developers in programming language familiarisation, e.g.: tlP "I always used to search for Python functions in ChatGPT, [...] Phind [...] and also Perplexity.AI [...] it was super helpful, especially to know the proper Python way of doing things, because each language has its own sort of style of writing code" - P2 [Software Engineer], and in getting domain knowledge, e.g.: tlP "GPT is definitely more helpful in [...] adopting the background knowledge of a new area" - P11 [Web Developer]. Maintaining Software Development Flow. Fifteen participants (i.e., P1, P4-P8, P12-P13, P15-P20, P22) presented different aspects that LLMs contribute to the software development flow. For instance, LLMs help developers to stay focused on the logic instead of typing when it autocompletes, e.g.: tlP "So it helps me with [...] reducing the time I'm actually writing and giving me more space to think about the flow in general." - P4 [Software Developer], fix syntax errors, e.g.: tlP "I really like to give ChatGPT the context [...] As I have this extension in Databricks, it makes it much easier. For example, I miss a line, I miss a path, I miss a way of calling a class method, etc, it corrects it on the spot" - P6 [Data Engineer], or return relevant information, e.g.: tlP "You can just make a query like: 'Hey, can you give me a query for this?', [then] I can just copy [it and] paste it. [This basically] gives me more concentration for 2, 3 hours to solve that problem" - P12 [Software Engineer]. Participants also mention how browsing on Google may break the development flow, e.g.: tlP "When I didn't have ChatGPT [...]
+
+TABLE 3: Summary of the Benefits of using LLMs at the Individual (Software Practitioner) Level.
+
+SE Activity
+Software Development Tasks / How LLMs Impact?
+Why the Impact Happens?
+
+
+
+
+   Requirement Engineering & Software Design
+Task: Brainstorming
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time, [#4] Gaining Learning Opportunities
+Reason: LLMs Saving Time#1; LLMs Reducing Effort#1,#3; Miti- gating Interruptions#1,#2,#3; Handing over the Control to LLMs#1,#2,#3; Automation#1,#2,#3; Reliance on LLMs#1,#2,#3,#4; Balanced Control over LLMs#4; LLMs Capabilities#4
+
+Task: Requirement Documentation Generation
+Benefit: [#1] Boosting code development, [#2] Reducing Effort,[#3] LLMs Saving Time
+Reason: LLMs Saving Time #1; LLMs Reducing Effort#1,#3; Mitigating Interruptions#1,#2,#3; Handing Over The Control To LLMs#1,#2,#3; Automation#1,#2,#3; Reliance On LLMs#1,#2,#3
+
+Tasks: Diagram Generation
+Benefit: [#1] Boosting code development, [#2] Reducing Effort,[#3] LLMs Saving Time, [#4] Improving Developers' Mental Model, [#5] Maintaining Developers' Flow
+Reason: LLMs Saving Time#1; LLMs Reducing Effort#1,#3,#5; Mitigating  Interruptions#1,#2,#3,#5;  Handing  over  the  Control to LLMs#1,#2,#3,#4,#5; Automation#1,#2,#3,#4,#5; Reliance on LLMs#1,#2,#3,#4,#5
+
+
+
+
+
+
+
+
+
+      Software Development & Software Quality
+Assurance
+Tasks: Concept Understanding
+Benefit: [#1] Reducing Effort, [#2] LLMs Saving Time, [#3] Gaining Learning Opportunities
+Reason: Balanced Control#3; Reliance on LLMs#1,#2,#3; LLMs Capabilities#3; Mitigating Interruptions#1,#2; Automation#1,#2; LLMs Reducing Effort#2
+
+Tasks: Information Retrieval
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time, [#4] Gaining Learning Opportunities, [#5] Maintaining Developers' Flow
+Reason: LLMs Saving Time#2; LLMs Reducing Effort#1,#3,#5; Mitigating Interruptions#1,#2,#3,#5; Handing over the Control to LLMs#1,#2,#3,#5 ; Automation#1,#2,#3,#5; Reliance on LLMs#1,#2,#3,#4,#5;
+Balanced Control#4; LLMs Capabilities#4
+
+Tasks: Code Understanding
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time, [#4] Improving Developers' Mental Model, [#5] Maintaining Developers' Flow
+Reason: LLMs Reducing Effort#1,#3,#5; Mitigating Interruptions#1,#2,#3,#5; LLMs Saving Time#1; Handing Over the Control to LLMs#1,#2,#3,#4,#5; Automation#1,#2,#3,#4,#5; Reliance on LLMs#1,#2,#3,#4,#5
+
+Tasks: Code Generation; Code Translation; Code Documen- tation Generation; Code Comment Generation; Unit Test Generation
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time, [#4] Maintaining Developers' Flow
+Reason: LLMs Saving Time#1; Reducing Effort#1,#3,#4; Mitigating Interruptions#1,#2,#3,#4; Handing over the Control to LLMs#1,#2,#3,#4; Automation#1,#2,#3,#4; Reliance on LLMs#1,#2,#3,#4
+
+Tasks: Test Case Identification, Test Data Generation
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time
+Reason: LLMs Saving Time#1; Reducing Effort#1,#2; Mitigating Interruptions#1,#2,#3; Handing over the Control to LLMs#1,#2,#3; Automation#1,#2,#3; Reliance on LLMs#1,#2,#3
+
+Tasks: Pull Request Generation
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time
+Reason: Mitigating Interruptions#1,#2,#3; Cautious Reliance On LLMs#1,#2,#3; Reducing Effort#1,#3; LLMs Saving Time#1,#2,#3; Bal- anced Control#1,#2,#3; Handing over the Control to LLMs#1,#2,#3; Automation#1,#2,#3; Reliance on LLMs#1,#2,#3;
+
+
+
+   Software Maintenance
+Tasks: Debugging
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time,[#4] Gaining Learning Opportunities, [#5] Maintaining Developers' Flow
+Reason: LLMs Saving Time#1; LLMs Reducing Efforts#1,#3,#5; Mitigat- ing Interruptions#1,#2,#3,#5; Handing over the Control to LLMs#1,#2,#3,#5; Balanced Control#4; LLMs capabilities#4; Automation#1,#2,#3,#5; Re- liance on LLMs#1,#2,#3,#4,#5
+
+Tasks: Code Review
+Benefit: [#1] Boosting code development, [#2] Reducing Effort, [#3] LLMs Saving Time, [#4] Gaining Learning Opportunities, [#5] Improving Developers' Skills
+Reason: LLMs Saving Time#1,#2,#3; LLMs Reducing Effort#1,#2,#3; Balanced Control#1,#2,#3; Automation#1,#2,#3; Cautious Reliance On LLMs#1,#2,#3
+
+
+It was much more difficult to clear up my doubts by wandering around the internet. There's a lot on the Internet [...] several sites, Stack Overflow, for example. [But] for you to find your question and be able to find your specific answer took a while." - P6 [Data Engineer]. When comparing AI pair programming and traditional pair programming, participants mentioned how traditional pair programming may come with interruption moments to searching for a solution, e.g.: tlP "Sometimes, when I have this question, and my colleague also does not know [how to get to] the answer, we have to look it up together in Stack Overflow [or something] like that." - P8 [Software Engineer].
+   Improving Developers' Mental Model. A few participants (i.e., P6, P10, P13-P14) mention how LLMs can aid developers in improving their code understanding, e.g.: tlP "'Why is it going on? Why is that method function [implemented in that way]?'" - P19 [Machine Learning Scientist]. When the developer responsible for a certain piece of code is busy, developers can ask questions to LLMs, e.g.:
+tlP "I have a friend who [...] was the one who built the
+
+functions and all systems. Sometimes he's unavailable [but] I [still] need someone to tell me what this [code] is about. When I read the code, [I cannot], it's quite unclear [what the code is about]. [Then, my] 1st thought: 'I need to check on documentation, and also some discussions on Stack Overflow'. [But then] I was thinking: 'maybe I can use LLMs [to help understand the code]'. So, I copied and pasted the code [into Perplexity.AI] and I asked this LLM to explain that to me." - P8 [Software Engineer].
+Developers can also use LLMs to generate diagrams to improve their code understanding, e.g.: tlP "So if I have described an architecture. [I can say to the LLMs:] 'Create the diagram for this architecture'. [Then] it creates the mermaid diagram, so it can easily be visualised how this architecture works." - P10 [Software Engineer].
+   Safe Space. A few participants (i.e., P4, P7, P12, P15) mention how LLMs provide a safe space for sharing ideas and questions. For instance, software developers can ask as many questions as they need, e.g.: tlP "I feel like senior people don't have a lot of
+
+
+
+
+  Requirement Engineering & Software Design
+
+
+
+
+      Software Development & Software Quality
+Assurance
+
+
+
+
+
+
+   Software Maintenance
+
+
+Software Development Tasks
+       Brainstorming Requirement Documentation
+       Generation Diagram Generation
+Concept Understanding Information Retrieval Code Understanding Code Generation Code Translation Test Generation
+Test Case Identification
+          Test Data Generation Code Documentation Generation Code Comment Generation
+Pull Request Generation
+
+ Debugging Code Review
+
+
+Individual Level Impact
+
+Boosting Code Developement
+
+
+Gaining Learning Opportunities
+
+
+LLMs Saving Time
+
+
+LLMs Reducing Developers' Effort
+
+
+Improving Developer' Mental Model
+
+
+Maintaining Developer' Flow
+
+Fig. 3: Main Benefits of using LLMs at the Individual (Software Practitioner) Level.
+
+
+time on hand for trivial issues [...] [but for LLMs] there is no judgment [while asking questions], because you can ask dumb questions to ChatGPT or any [other] LLMs. And you can ask it as many times as you want, and you can get examples [...] You can get customised responses." - P15 [Researcher]. This seems to be motivated by the desire to avoid disturbing colleagues' work, while becoming self-reliant, e.g.: tlP "Everyone's very busy at work
+- the senior developers as well - you kind of - It's not a set rule - but I feel I have a limited number of questions I can ask per day." - P7 [BI Analyst]. In parallel, LLMs can offer certain levels of companionship experience, e.g.: tlP "We can interact with LLMs like a person. And it's good to have that kind of companionship as well, like you can talk to it and say: 'Hey, what do you think about this?'" - P12 [Software Engineer], and empathy, e.g.: tlP "There was one time when [...] I imported some of the things Copilot sent me and tried them. When I went to Unity, it wouldn't even run the project. [...] [Copilot would reply]: 'I'm sorry for your dissatisfaction, for your frustration, but let's try to do it another way'." - P4 [Software Developer].
+3.1.2 Team Level
+Mitigating Interruptions. Fifteen participants (i.e., P1, P4-P6, P10, P12-P21) described how LLMs lead to fewer interruptions. Participants showed a preference to LLMs over disturbing col- leagues, e.g.: tlP "I'm always more comfortable using ChatGPT, Copilot. I do as little as possible to ask for help, so as not to disturb other people." - P4 [Software Developer]. Participants also highlight the potential of LLMs supporting companies' onboarding, which normally requires a lot of guidance from colleagues, e.g.: tlP "If you're kind of new to the team, you would feel more inclined to kind of just break it down through Copilot or ChatGPT first. And then afterwards, if you still don't understand it, then kind of go ask an experienced coworker" - P14 [Data Engineer].
+   Additional Assistance for Technical Questions. Many par- ticipants (i.e., P1-P4, P6, P8, P11-P13, P15, P17, P18, P22)
+mention about relying on LLMs for technical questions. LLMs are convenient in providing direction to software developers on how to approach tasks, e.g.: tlP "If I need some help [...] I can get some idea about what I need to do regarding those things, if we need some best code practices, or something like that" - P18 [Software Developer]. LLMs can also suggest an alternative approach, acting
+
+as a second opinion, e.g.: tlP "Sometimes even the whole team is narrowed down into one specific way of doing stuff. So it's a good thing there [to have a second opinion]" - P12 [Software Developer].
+
+3.1.3 Organisation Level
+Cost Saving due to LLMs. A few participants (i.e., P7, P9, P15- P16, P20-P22) highlight how LLMs can contribute to reducing costs. For instance, using LLMs for debugging can decrease the time to find the problem, e.g.: tlP "We are a small company, but we move at least one to 2 million dollars per week [...] If there's a production issue, then it's like: 'Oh, we need to solve this immediately'. And it [LLMs] saves a lot of time to find the bugs and to mitigate the problem. That [time spent searching for the problem] it costs, [and] you have put the money in somewhere else, where it should not be" - P12 [Software Engineer].
+
+3.1.4 Society Level
+Foster Entrepreneurship. A few participants (i.e., P10 and P21) mention the potential of LLMs encourage entrepreneurship. This occurs due to the great LLM prototyping capabilities, e.g.: tlP "Prototyping becomes much faster for these [startup] com- panies [...] Even a non-coder [...] can create just the rundown prototype, not a full, scalable solution. But just to showcase sort of a working front-end" - P21 [Researcher Developer], and boost in individual productivity, reducing demand for big teams, e.g.: tlP "It also makes it easier to create new companies [...] because you can do more with fewer people. - P10 [Software Engineer]. At the same time, LLMs can provide basic information necessary to start a business, e.g.: tlP "It can help you with the basics of marketing, accounting, and law, so it can help you tap into the basics of all these things, so you don't need to recruit a team first." - P21 [Researcher Developer].
+   Consultant for Everyday Questions. A few participants (i.e., P6, P18, P21) highlight how LLMs emerge as a valuable assistant for everyday demands. This extends from simple questions, e.g.: tlP "In my day-to-day life, LLMs are more of a consultant for questions. For example, when I was arranging an interview with you, I thought: 'My God, what's the time zone difference between Brazil and Australia?' LLM is a day-to-day consultant for basic
+
+TABLE 4: Summary of the Disadvantages of using LLMs at the Individual (Software Practitioner) Level.
+
+SE Activity
+Software Development Tasks / How LLMs Impact?
+Why the Impact Happens?
+
+   Requirement Engineering & Software Design
+Task: Brainstorming
+Disadvantage: [#1] Losing Learning Opportunities, [#2] Hindering Developers' Skills, [#3] Poising Developers' Personality
+Reason: Unpracticed skills#1,#2; Handing Over the control to LLMs#1; Influence of Personality#1,#2; Overreliance on LLMs#1,#2,#3; Losing Control Over LLMs#2,#3; LLMs Reducing Effort#1,#2,#3; Mitigating Interruptions#3
+
+Tasks: Diagram Generation
+Disadvantage: [#1] Hindering Developers' Skills
+Reason: Overreliance on LLMs#1; Losing Control over LLMs#1; LLMs Reducing Effort#1; Mitigating Interruptions#1; Unpracticed skills#1
+
+
+
+
+
+      Software Development & Software Quality
+Assurance
+Tasks: Information Retrieval
+Disadvantage: [#1] Losing Learning Opportunities, [#2] Pois- ing Developers' Personality
+Reason: Unpracticed skills#1; Handing Over the control to LLMs#1; LLMs Reducing Effort#1,#2; Overreliance on LLMs#1,#2; Influence of Personality#1; Losing Control Over LLMs#2
+
+Tasks: Code Understanding
+Disadvantage: [#1] Poising Developers' Personality
+Reason: Overreliance on LLMs#1; Losing Control Over LLMs#1; LLMs Reducing Effort#1
+
+Task: Code Generation
+Disadvantage: [#1] Reducing Developers' Mental Model, [#2] Hindering Developers' Skills, [#3] Damaging Developers' Reputation, [#4] Disrupt Developers' flow, [#5] Degrade Code Quality
+Reason: Losing Control over LLMs#1,#2,#3,#4,#5; Automation#1,#4; Overreliance on LLMs#1,#3,#4; LLMs Reducing Effort#2,#3; Mitigating Interruptions#2; Unstable Accuracy#3,#5
+
+Tasks: Test Generation; Test Data Generation; Code Transla- tion; Pull Request Generation
+Disadvantage: [#1] Degrade Code Quality, [#2] Hindering Developers' Skills
+Reason: Reliance On LLMs#1; Unstable Accuracy#1; Unpracticed skills#2; Handing Over the control to LLMs#2; LLMs Reducing Effort#2; Overreliance on LLMs#2; Mitigating Interruptions#2; Influence of Expertise#2; Influence of Personality#2; Losing Control over LLMs#1
+
+
+   Software Maintenance
+Tasks: Debugging
+Disadvantage: [#1] Hindering Developers' Skills, [#2] In- crease Developers' Effort due to LLMs
+Reason: Unpracticed skills#1; Handing Over the Control to LLMs#1; LLMs Reducing Effort#1; Overreliance on LLMs#1; Influence of Personality#1; Mitigating Interruptions#1; Lack of Background Knowledge#2; Unstable Accuracy#2
+
+Tasks: Code Review
+Disadvantage: [#1] Degrade Code Quality, [#2] Losing Learn- ing Opportunity
+Reason: Unstable Accuracy#1; Losing Control over LLMs#1; Handing Over the control to LLMs#2; LLMs Reducing Effort#2; Reliance on LLMs#2; Influence of Personality#2; Mitigating Interruptions#2
+
+
+questions." - P6 [Data Engineer], and advanced tasks, e.g.: tlP "For general tasks, I have to plan a trip or something like that. I'm always like, sometimes like, go for ChatGPT and ask for [potential] schedules and everything. So, it's easier for me [to use ChatGPT for searching relevant information]." - P18 [Software Developer].
+
+
+
+3.2 RQ2. How do LLMs hold software developers back?
+3.2.1 Individual Level
+Slowing software development. Most of the participants (i.e., P1-P3, P5-P19, P21, P22) mention how using LLMs may slow software developers. For instance, they may need to start a new conversation when LLMs get stuck in the same wrong suggestion, e.g.: tlP "I usually started from scratch and gave him as much background and information as possible. Because when I continued the same conversation, it tended to continue the same mistake" - P6 [Data Engineer]. Due to the possibility of hallucinations happening, developers need to review suggestions, e.g., tlP "We don't have that trust [that] everything [every output] is correct, because it's
+
+not always correct, so we still have that gap like everything is not [always] correct." - P18 [Software Developer].
+   Increasing the Developer's Effort. The majority of the par- ticipants (i.e., P1, P3-P12, P14-P17, P19, P21, P22) presented scenarios where adopting LLMs increase their effort, for example, due to LLMs' response size limitation, e.g.: tlP "The biggest [limitation] would be the question of answer size, where it can't answer a very large answer, and I'm going to have to ask several small questions in order to get my objective." - P1 [Software Developer]. In order to avoid LLMs from getting a full picture, software developers may also need to break down prompts into subprompts, e.g.: tlP "I don't typically give the whole idea that I want to achieve to the GPT. Rather, I kind of break down into different segments and then let them to generate the code for me for each segment. In the end, I would do my own construction [, integration,] of these segments." - P17 [Data Analyst]. The unstable accuracy of LLMs also makes the developers spend energy in vain implementing wrong suggestions, e.g.: tlP "I would follow the debugging steps that they laid out for me. And then sometimes that works. Sometimes it doesn't, as usual" - P3 [Software Engineer]. LLMs Dragging out Tasks. Many participants (i.e., P1, P3,
+P5-P8, P10-P11, P13-P17) mention how LLMs dragging out tasks. For instance, participants argue that there are situations where it is faster to do by themselves, e.g.: tlP "Sometimes you have [moments when you get doubtful about LLMs]: 'Okay, I'm just struggling to get this done because [LLMs] it doesn't get what I'm saying. So I'll just do myself'" - P10 [Software Engineer].
+   Degrade Code Quality. Most of the participants (i.e., P1-P3, P5, P7-P11, P13-P22) discussed how LLMs negatively affect code quality. This can be caused by a weakening in their software development skills, e.g.: tlP "If you fully rely on it, the quality of your code base would drop by a lot" - P3 [Software Engineer].
+
+They also highlight that LLMs may suggest solutions without taking into consideration the organisation's approach, e.g.: tlP "Usually I make a lot of changes to the code as well, because there's always something [that] the LLM will miss. The LLM won't have the entire context of the task, or [understand] what's the future plan [adopted by] the company" - P10 [Software Engineer]. LLMs can also provide wrong suggestions, e.g.: tlP "Sometimes ChatGPT - I don't know if it's [related to ChatGPT] design or something [else]
+- [recommend] libraries or packages [which] are not compatible. What ChatGPT proposed is not compatible with the environment I work in. I've encountered numerous times that I have to deal with this issue, and [I] ended up wasting a lot of time." - P17 [Data Analyst].
+   Losing Learning Opportunities. Fourteen participants (i.e., P2-P8, P14-P15, P17, P19-P22) mentioned the negative impact on learning due to adopting LLMs. For instance, software developers might lose interesting discussions from online forums due to adopting LLMs, e.g.: tlP "from Stack Overflow, [there are] more comprehensive discussions there" - P8 [Software Engineer]. Relying on LLMs to reduce effort via automation may take away valuable learning opportunities.
+   Reducing Developer's Code Mental Model. A few partici- pants (i.e., P6, P10, P13-P14, P20-P21) mentioned the negative impact on the developer's mental model. They argue that when developers overrely on LLMs by handing over the control to them, they lose in code understanding. This also affects software developers' debugging capabilities, e.g.: tlP "For example, Copilot developed five class methods for me, I didn't do it myself. If you debug it or show it to someone, you won't know how the code was implemented." - P6 [Data Engineer]. Consequently, they are pressured to continue relying on LLMs for debugging, e.g.: tlP "If you have zero knowledge of the code, you just wrote because ChatGPT wrote it, and you didn't actually go through and read it, [doing code review], you then have to [rely on ChatGPT and to] ask ChatGPT to read the code that it wrote and then [get ChatGPT] tell it what problem happened" - P13 [Software Developer]. On the other hand, their code understanding improves naturally when coding by themselves, e.g.: tlP "When you code yourself, you already have that [mental model] by default, because you had to code." - P10 [Software Engineer].
+   Negative Impact on Developers' Personality. We found in the responses of thirteen participants (i.e., P1, P3-P5, P9, P11, P13, P15, P17, P19-P22) examples of how using LLMs impacts their personality. For instance, LLMs' automation capabilities influence software developers in becoming lazier, e.g.: tlP "I have become lazy [to write] even if [it is just a] small one line I can also rely on the LLMs [...] if I have to read a documentation, I will just ask LLMs to summarise so that I don't have to read it completely" - P19 [Machine Learning Scientist], apathetic, e.g.: tlP "Even my capacity for analysis, it's lost over time. I'll spend more and more time just accepting, just like you review a PR (pull request). And you don't really care" - P4 [Software Developer], and less confident in their own development skills, e.g.: tlP "It would take much longer to do something [that while not using AI, compared to] you [that] can do it with ChatGPT or Claude nowadays." - P15 [Researcher]. Hindering Developers' skills. Eleven participants (i.e., P2- P5, P7, P11-P15, P19-P20) mention how adopting LLMs affects software developers' skills. This occurs because, when novice software developers overrely on LLMs to reduce effort by dele- gating tasks, they miss essential opportunities for the development of their technical and soft skills, e.g.: tlP "You're so reliant on
+
+ChatGPT to think for you [...] your skills don't really increase much. You're still that beginner" - P5 [Software Developer]. For more experienced developers, the process of atrophying their software development skills happens due to reliance on LLMs, e.g.: tlP "One of my colleagues said he deliberately turned off the [AI-based] completion because now he says 'sometimes I just forget how it works. Sometimes I forget about the basics of my programming, because I'm used to this now'." - P12 [Software Engineer], tlP "But since you're missing that sort of mental exercise, you don't really develop the coding muscles. And I think it kind of deteriorates your skills and your ability as a software developer." - P5 [Software Developer]. Doing code review is not defended as not being enough to stop the skill deterioration, e.g.: tlP "'Ah but [when using LLMs] you analyse the code', I do. But I think that even my capacity for analysis, it's lost over time. I'll spend more and more time just accepting, just like [when] you review a PR (pull request) and you don't really care. I think I'd do the same thing over time, gradually [...] my review would get worse." - P4.
+   Damaging Developers' Reputation. A few participants (i.e., P6-P7, P9-P10, P19, P21-P22) mention how errors from code generated via LLMs can affect developers' credibility - due to LLMs' non-deterministic nature. For this reason, participants demonstrate a cautious approach towards completely delegating tasks to LLMs, e.g.: tlP "It [code with errors] impacts your credibility as a professional" - P9 [AI Engineer], tlP "When you push the code to the Git [repository], it is not the LLM's name that will be in that log, it will be your name." - P19 [Machine Learning Scientist].
+   Disrupting Software Development Flow. We found eleven participants (i.e., P4-P5, P7-P8, P12-P13, P15-P19) mentioned how interaction with LLMs can disturb their flow. For instance, interacting with LLMs via their online platform may cost a context switch to the code editor, e.g.: tlP "If I need to find a solution with it, I'm still [do] context switch because [ChatGPT] it's not inside [the IDE] where I'm coding" - P16 [R&D Researcher]. The many suggestions offered by LLMs can also distract software developers, e.g.: tlP "Sometimes ChatGPT will give you an answer that's completely different to what you were thinking. Unless you actually implement those [potential solutions] in real life, you don't know what the result is going to be [...] [basically] ChatGPT puts another option on top of your solution that you have in your mind." - P7 [BI Analyst].
+   Communication Problems. We identified six participants (i.e., P1-P4, P6, P17) mentioning problems related to miscommunication with LLMs. This appears to happen due to AI hallucination or "misunderstanding" of user prompts, e.g.: tlP "Sometimes it will do extra things that I didn't ask for." - P5 [Software Developer]. But this can also occur due to the user facing difficulty in creating clear prompts, e.g.: tlP "There's the communication problem. I can't explain the whole robust part so that the LLM has the basis to be able to answer me" - P6 [Data Engineer].
+3.2.2 Team Level
+Losing Mentorship Opportunities. Some participants (i.e., P2-P3, P6-P7, P15-P14, P18-P19, P21-P22) describe how LLMs negatively influencing mentorship opportunities, taking the mentorship role from senior developers. This happens because novice developers would seek assistance first from LLMs, tlP "If I'm researching something that I don't know a lot about, I usually will turn to technical documentation and Google [...] first. While mentoring a junior in my field, they were very quick to go to LLMs first, and
+
+Software Development Tasks	Individual Level Impact
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 4: Main Disadvantages of using LLMs at the Individual (Software Practitioner) Level.
+
+
+even criticise me, not for going to Google first" - P22 [Software Developer].
+
+3.2.3 Organisation Level
+Issues with Code License. A few participants (i.e., P2, P11, P16) mention license concerns at the organisation level, and how they shape their organisation's approach towards LLMs, e.g.: tlP "Our company doesn't allow the use of ChatGPT because of [...] ownership [issues]. It's not possible to get the ownership" - P18. Seeking to avoid potential code license issues, companies can decide to prohibit using LLMs in the workplace, e.g.: tlP "At my previous work [...] their policy was just to avoid using ChatGPT or any other LLMs. Their concern was more to do with the ownership of the code that was being generated, and how it might violate the trademarks." - P2 [Software Engineer]. Settling licenses may also cause a delay in the adoption of LLMs at the workplace, e.g.: tlP "We had to wait for the licenses [regarding ChatGPT] to come for that" - P16 [R&D Researcher].
+   Issues with Security & Privacy. We found security and privacy concerns in the responses of twelve participants (i.e., P2-P3, P5, P7, P9-P11, P13-P16, P18). There is a sceptical attitude on how LLMs approach these topics, e.g.: tlP "For security reasons, my current company isn't allowing AI [to be] integrated into the program." - P7 [Data Analyst]. The potential of LLMs to suggest code with potential security flaws also makes software developers approach LLMs with caution, e.g.: tlP " When I started using it... I kind of realised that it [ChatGPT] tends to hallucinate a bit more. It made me worried about using the code directly in my code base. Because if I'm not careful and read every single line of code, I might introduce [...] a security flaw in the code." - P5 [Software Developer].
+   Cost of using LLMs. Seven participants (i.e., P2, P9-P10, P12, P16-P17, P19) mentioned the organisation cost of adopting LLMs. In this sense, the cost of tokens may limit high-volume interactions (i.e., vibe coding), e.g.: tlP "When we try to scale [that AI-generated code], we know that it becomes much faster and much more expensive quickly because we rely on OpenAI to do the calls, and we pay by token. You can't actually do it because it's going to cost this amount. - P16 [R&D Researcher]. This forces more planning before initiating this level of interaction, e.g.: tlP "We have to measure that in advance to make sure that you can spend that money [for] that type of stuff." - P16 [R&D Researcher].
+3.2.4 
+Society Level
+Erosion of Social Trust. We found negative effects of LLMs on social trust in six participants (i.e., P2, P11, P14, P16, P19, P22). There is a concern of LLMs being misused, such as cheating during interview processes, e.g.: tlP "There's also a lot of LLMs that can help you pass an interview, right? [Of course] it really depends on how [the interview] it's monitored." - P14 [Data Engineer], tlP "People would still need to consider the situation where it would add to misinformation and generate maybe a lot of fake news and fake videos [...] [because of] that people would find it difficult to trust anything" - P2 [Software Engineer].
+   Job Market Crisis. Eight participants (P3, P7, P12, P16, P18, P20-P22) describe the impact of LLMs on the job market. Automation, not just LLMs, appears as the motivation for human replacement in simple tasks, e.g.: tlP "With the rise of AI and automation, a lot of things that humans can do can be replaced by using a robot." - P3 [Software Engineer]. While there is still a demand for experts, non-specialised professionals might be replaced, e.g.: tlP "We're still gonna need to rely on those experts for a lot of things. But then the issue is the ones that are not the experts, the in-between ones." - P16 [R&D Researcher].
+
+
+
+3.3 RQ3. How do software developers achieve a bal- anced use of LLMs?
+Exploring LLM Capabilities. This involves investigating, learning by experimentation, how LLMs can support software developers. In this process, developers can navigate through different LLMs until they find one that suits their needs, e.g.: tlP "I actually started
+
+with ChatGPT like everyone else. And then I found that ChatGPT [basically] give me too [much] general information [...] then I tested [Microsoft] Copilot, and it gave me better results [...] I think that, in some cases, it's giving me not I wanted it and then I moved to Perplexity.AI, because Perplexity.AI has more current [information]." - P8 [Software Engineer]. Their perception towards LLMs also advanced during this process, e.g.: tlP "In the beginning, it seemed like they managed to make this semi-sentient chatbot thing. But as I started to understand the technology behind it, it became clear that it's not very sentient. And it's not really aware of what it's doing. It's more like a statistical or a machine learning model" - P5 [Software Developer].
+   Pragmatic Attitude towards LLMs. Participants describe slow adoption of LLMs. Some participants mention why the late adoption, e.g.: tlP "I just didn't feel like I really needed [to use LLMs] [...] I already have a good workflow established." - P11 [Web Developer]. At the same time, software developers should drop LLMs in case they are not being helpful, e.g.: tlP "If you're finding that it wastes your time, just stop using it and just write it yourself because [LLMs] it's useful to save time. But if it's not saving time, just stop using it." - P13 [Software Developer].
+   Balancing Time-Saving & Learning Opportunities. While LLMs can provide time-saving for software development by reducing effort, that effort may be necessary to practice their skills. Software developers, especially novice developers, should seek a balance between time-saving and skill growth, e.g.: tlP "I'm going to continue seeing it [GenAI] as a tool that I can save me a lot of time. But at the same time, I can use it to help me learn as well." - P14 [Data Engineer]. In that sense, it requires certain levels of self-control to avoid the temptation of overreliance on LLMs, e.g.: tlP "I use [Copilot] a good amount, but taking into account that I know I could use more, I just want to preserve the processing in my head [...] If I don't exercise my [brain for] programming logic, I'll lose it [the skills]." - P4 [Software Developer].
+   Understand Suitable Use Cases for LLMs. Every participant presented suitable and unsuitable use cases for LLMs. LLMs are skilled in simple tasks and popular topics, e.g.: tlP "ChatGPT is very good at doing things that have already been done [...] a lot of times." - P5 [Software Developer]. Regarding unsuitable tasks, participants mention how LLMs are unhelpful for complex tasks, e.g.: tlP "If the tasks are fully related to code, design patterns, modularisation, or unit tests, yeah, [LLMs are] pretty helpful. But if it's more related to the business aspect of the solution, LLMs are not that helpful." - P9, or tasks that differ between companies, e.g.: tlP "When you are dealing with non-functional aspects of the solution, sometimes LLMs ask a lot about [...] [for instance,] how to deploy this - because the deployment process [is] different among different companies." - P9 [AI Engineer].
+   Combining Different LLMs for Different Tasks. Many partici- pants (i.e., P2-P5, P8-P10, P12, P14, P16) defend that LLMs should be treated as a tool, which involves understanding their capabilities. Participants highlight how different LLMs (e.g., ChatGPT, Claude) are more efficient for different tasks, e.g.: tlP "I've been using ChatGPT for user-related tasks and requirement-related tasks but for code-related tasks, I've been using the Copilot." - P12 [Software Engineer]. In this context, the traditional software engineering seems to transition into agentic software engineering, e.g.: tlP "Most applications will become agentic applications, using LLMs to take actions [...] these new protocols which are emerging like the model context protocol (MCP) from Anthropic and A2A from Google will be able to improve this kind of communication
+
+between software and agent software" - P9 [AI Engineer]. This aligns with Hassan et al. [33] when they proposed the Agentic Software Engineering (SE 3.0).
+   LLMs for Code Improvement instead of Code Generation. Participants mention how LLMs aid them to improve their code, e.g.: tlP "usually what I do when I want to create the logic, I don't just say [to LLMs]: 'Generate this [without showing any example]' [but] I actually start typing and creating the code. And I use more of the auto-complete [feature] of the LLMs, [than] the actual generation stuff." - P10 [Software Engineer]. In this sense, the software developer maintains a balanced level of control over LLMs. In addition, participants mention avoiding using LLMs for code generation from scratch due to concerns involving the potential impact on their skills, e.g.: tlP "for code generation, I would be a bit more sceptical and maybe not use it very often. Because it will also affect your skills as well" - P2 [Software Developer].
+   Running LLMs Locally. Participants P9 and P22 both decided to run LLMs (i.e., Jan.AI, Llama, H2O Danube, and Mistral) locally via Ollama, Llama.cpp, and LM Studio as an approach to deal with privacy concerns in hosted LLM services. They believe maintaining privacy is worth the cost incurred, e.g.: tlP "I'm avoiding hosted services [and using LLMs locally] is largely around my concerns around privacy, and I do think there is a cost to privacy [...] these companies that are hosting the services will train on your input [...] It is not a private conversation." - P22 [Software Developer].
+
+
+4 DISCUSSION
+4.1 Implications for Practice
+Gains do not come without cost. We presented in section 3.1 the benefits and 3.2 the disadvantages of using LLMs. Our findings align with the literature (e.g., [34]-[37]) by showing the multiple facets regarding the impact of using LLMs. While LLMs can boost software development, software developers can be affected in the long term in case of overreliance. Those developers could find themselves in a scenario where they stop improving their skills. On the other hand, developers who decided to have self-control against overreliance will obtain more long-term career benefits due to their mature skills. When it comes to environmental cost, surprisingly, only two participants (P16, P22) demonstrated concerns about the energy consumption, overlooking water consumption [38]. Shi et al.
+[22] suggested that developers employ program-centric techniques, such as program pruning and grammar augmentation, to reduce the number of tokens.
+   Balanced control is the solution. We identified participants exercising various levels of control over Large Language Models (LLMs), ranging from high levels of control, such as self-restraint (e.g., turn off GitHub Copilot autocomplete), to low levels, exempli- fied by vibe coding [39]. While it may seem appealing to relinquish
+
+control over LLMs by generating extensive pieces of code, doing so can increase the risk of hidden bugs and errors. Although LLMs can assist with software development tasks, software developers must retain oversight. Examples of balanced control include using Test-Driven Development (TDD) in conjunction with LLMs and employing prompts across multiple LLMs. Mathews et al. [40] found that employing TDD with models like GPT-4 and Llama 3 leads to a higher success rate in solving programming challenges.
+   LLMs as Approach to Mitigate Interruptions. Several studies have delved into understanding how to improve developer experi- ence (DevEx) [41], [42] by mitigating interruptions. Zuger et al.
+[43] argue that frequent interruptions for knowledge workers can lead to organizational costs due to incomplete tasks. To address this issue, they developed "a physical traffic-light-like LED with an automatic interruptibility measure based on computer interaction data". From their large-scale and long-term field study, they found that their solution reduced the interruptions of participants by 46%. In this sense, we identified that teams adopting LLMs may result in fewer interruptions.
+   LLMs Facilitating Developers Reaching the Flow. While analysing how LLMs influence software development flow in Section 3.1 and 3.2, we observe the great potential of LLMs for facilitating developers reach flow, aligned with the literature [23], [44]. Ritonumi et al. [45] describe flow state as: "The characteris- tics of being in flow include deep involvement in the activity (often described as intense and focused concentration), a merging of action and awareness, loss of reflective self-consciousness, a sense of control, an altered sense of time, and autotelic experience". They also mention optimal challenge, challenge-skill balance, and immediate feedback as flow antecedents; and no distractions or interruptions and positive developer experience as facilitator factors to reach flow. LLMs can support provide a better developer experience (i.e., DevEx [46]), by reducing frictions for simple and repetitive tasks.
+   Different Effects on Novice and Experienced Developers. When adopting LLMs for code generation, developers move from actively coding to conducting code review [47]. While experienced developers face a loss of coding muscles, they can rely on muscle memory to go back to their best performance. On the other hand, novice developers did not build those muscles, and overreliance will make them stuck in their current level. On the other hand, software developers can improve their code review skills by reviewing LLMs' suggestions, essential for senior roles.
+   LLMs as Champion for Prototyping. Participants described the high potential of LLMs for prototyping, which aligns with the literature (e.g., [48], [49]). Vibe coding paradigm appears to suit this context, focused on the development of a minimum viable product (MVP) to validate hypotheses about customer needs. They can quickly communicate the product proposals to the public [50].
+   With Great Power comes Great Responsibility. Participants demonstrated different perspectives involving code ownership when using LLMs. We observed less experienced participants showing insecurity in recognising their code ownership. However, code ownership emerges when developers act responsibly [51], ensuring the quality of the code. This aligns with the emerging regulations worldwide that emphasise the importance of human authorship. For instance, the U.S. copyright law3 requires "sufficient human contribution or control" over AI-generated code.
+
+3. www.copyright.gov/ai
+4.2 
+Directions for Future Work
+Based on the findings from our analysis, we have identified research gaps involved to software practitioners adopting LLMs for Software Development, not explored in our current work.
+   How do LLMs affect social intelligence? Our findings show that using LLMs may mitigate interruptions at the team level. Although it may benefit in terms of productivity, the software development life cycle is entwined with "collaboration, human judgment, emotional interactions, and decision-making" [52], [53]. This is particularly important for manager positions, where social intelligence plays a crucial role in capitalising on interactions with customers and employers.
+   How do LLMs empower developers' time? Participants mentioned different ways LLMs empower their time. While some participants would just proceed to the next task after finish current tasks using LLMs, one of the participants would use LLMs to give an extra time before close tasks, e.g.: tlP "The big advantage is time. You can even bargain for a bit of time too. For example, suppose I have a task that I know will take a day to do, if the AI can do it for me, I won't deliver it quickly. I'll take my time and at the end of the day I'll hand it in." - P4 [Software Developer].
+   How does laziness drive developers' interaction with LLMs? We identified some examples that point to laziness in software developers' interaction with LLMs. Software developers might feel lazy to write prompts, and interaction with LLMs can also make software developers lazy.
+   How do LLMs affect developers' intuition? According to Naur [54], "Software development in all its phases, and irrespective of the techniques employed in its pursuits must and will always depend on intuition". Intuition built from previous experiences acts as a safeguard mechanism, enabling software developers to navigate LLM's wrong suggestions. While Chen et al. [55] investigated the role of human intuition when using LLMs, the study regarding the effects of LLMs on human intuition remains unexplored.
+   How do LLMs contribute to burnout in software projects? Investigations into burnout in SE have been the focus of numerous studies [56]. In their systematic mapping study, Tulili et al. [56] identified the following causes for burnout: personality traits (e.g., neuroticism), work-related factors (e.g., job demand, job overload), communication practices, agile practices, and physiological factors. In our study, one of our participants expressed concern about organisations pressuring developers to expand their responsibilities by using LLMs as justification, which may contribute to developer burnout.
+   Controversial use cases. Participants demonstrate different opinions regarding using LLMs for test generation, code generation, and debugging. LLMs are discouraged for test-related tasks due to providing the illusion of false assurance. Wang et al. [7] argue that using LLMs for integration tests may result in errors or unreliable results because those tests may exceed the capacity of the LLM to process and analyse. LLMs are also discouraged for code generation due to the harmful long-term effects towards software developers' skills. Some participants also highlight LLMs may provide general debugging guidance, since they cannot run the code.
+
+5 RELATED WORK
+Barke et al. [57] conducted an observational and interview study with twenty software developers using GitHub Copilot on how they interact with GitHub Copilot. They employed traditional Grounded Theory analysis [61], identifying two interaction modes:
+
+
+
+
+
+
+Fig. 5: Comparison with related work focused on benefits and disadvantages. The colored bars represent the overlap with existing literature [57]-[60], and empty bars indicate new findings.
+
+
+acceleration mode and exploration mode. In acceleration mode, the developer has a clear understanding of the next required task; whereas developers explore GitHub Copilot autocomplete suggestions in exploration mode due to a lack of direction. According to Barke et al., the interactions in the acceleration mode are fast and do not disrupt the programmer's flow. Our study findings corroborate their findings regarding LLMs maintaining development flow. Also aligned with our findings, they identified that LLMs can also disrupt the development flow when providing long suggestions.
+   Banh et al. [58] conducted eighteen interviews with IT-related professionals (i.e., software developers, a product owner, and a scrum master) between August 2023 and January 2024. They aimed to understand how to integrate Generative AI in Software Engineering, exploring the opportunities and challenges related to adopting Generative AI tools. They applied the traditional Grounded Theory, resulting in the conceptual framework of generative AI integration in Software Engineering practices. Their findings, similar to ours, are: reduced development time, issues with intellectual property, underestimated overhead, developer empowerment, and code quality improvement via LLMs. However, our findings also include the contractions involving the benefits and disadvantages, such as code degradation via LLMs, LLMs dragging tasks (see 3.2.1). Our results point out the necessity for a balanced approach to the adoption of LLMs, advocating for their use as a net positive in the software development process. Our recommendations in Section 3.3 contain practical suggestions contributing to achieve this.
+   Liang et al. [59] employed traditional Grounded Theory [62] through twenty interviews and observation of fifteen software developers. We could not identify when interviews and observation were conducted. Their contribution includes an understanding of prompt programming practices. Similar to our study, they identified the potential of LLMs to assist developers in improving their mental model. Although their research focused on prompt programming aspects, they present their impact across different software development tasks similar to us (See Table 3 and 4). Our findings distinguish by showing not only the impact of software
+
+practitioners' interaction with LLMs, but also how it reflects in others levels, such as team level (e.g., mitigating interruptions).
+   Li et al., [60] conducted twenty-six interviews in three rounds with industry practitioners and 395 survey respondents. They employed Socio-Technical Grounded Theory [25], [27], which resulted in the theory of AI Tool Use and Adoption in Software Engineering. Similar to our study, they also classified the impact at the individual and organisational level, such as fear of decreased skills and potential judgment of using LLMs, which are related to the sections hindering developers' skills and damaging developers' reputation from our study (See 3.2). On the other hand, our findings also comprehend the impact at the team and society level, such as losing mentorship opportunities due to LLMs, and LLMs fostering entrepreneurship.
+   Although the literature presents studies exploring the impact of LLMs for software development, as illustrated in Figure 5, our investigation goes further by identifying best practices to balance the forward and backward impact of adopting LLMs.
+
+6 EVALUATION
+6.1 Evaluating STGT Application
+The evaluation of the STGT method application consists of credibility and rigour as key criteria [25], [27]. In terms of credibility, our section 2 provides details involving the recruitment process (social media, and emailing), sampling method (purposive sampling followed by convenient sampling), how iterative and interleaved data occurred (three rounds of data collection and analysis), and how memos was written and applied (to guide structure of emerging concepts and sub-categories, and as directions for future work). Concerning rigour, our section 2 also provides examples of basic coding and constant comparison (See Fig. 2) and embedded sanitised evidence (i.e., several interview quotes throughout Section 3).
+
+6.2 Evaluating STGT Outcomes
+Findings from the application of STGT for data analysis should exhibit originality, relevance, and density [25], [27]. In terms of
+
+originality, we position our findings within comparison to related work in Section 5. The relevance of understanding the impact of LLMs on software practitioners is highlighted in Section 1. Regarding density, Section 3 condenses the sub-categories and concepts that compose the category "Impact on using LLMs". We illustrate the different aspects by using several interview quotes.
+
+7 THREATS TO VALIDITY
+We will discuss the study limitations using the Total Quality Framework (TQF) developed by [63], suitable for qualitative studies in software engineering [64], [65]. This framework is structured in the following aspects: credibility regarding data collection, analyzability on the data, transparency of reporting, and usefulness of the findings.
+   Credibility. It refers to how comprehensively and accurately the data collection was performed [66]. Our study participants cover individuals from different demographics, such as gender, country of residence, years of professional experience, and role. At the same time, we acknowledge that future research could expand the participants' pool by interviewing, for example, IT managers and project managers or collecting data from professional social media (e.g., LinkedIn and Reddit posts). Besides our challenges in recruiting participants - an arduous task described by [67] - we reached a suitable sampling size. We also acknowledge that changing the ATAI scale questions from 9 scale to 5 scale may impose threats to validity. However, we also defend that it may facilitate respondents to answer the questions.
+   Analyzability. It refers to how comprehensively and accurately the data analysis was designed and executed. Although our qualitative analysis carries an intrinsic subjectivity, we mitigate this by conducting a pilot for the open coding, as well as conducting discussions over the emerging codes, concepts, sub-categories and categories between the authors.
+   Transparency. It refers to how clear and complete this paper reports the aspects referring to credibility and analysability, supporting replication or transference to other contexts. We intend to present enough information. Additionally, we provide further information in the appendices and in the online supplementary material package [26].
+   Usefulness. It refers to how useful the study contributions and findings are. Our findings can support software team leaders and IT managers in evaluating whether LLMs align with their context and needs, as well as guiding SE researchers for future research needs.
+
+8 CONCLUSION
+In this paper, we present the software practitioners' perspective on the impact of LLMs at the individual, team, organisation, and society levels. We also present suggestions on how to balance the benefits and disadvantages of using LLMs. Throughout the paper, we present LLMs as a double-edged sword. At the individual level, most of the participants mention LLMs boosting software devel- opment, saving time, and reducing effort as benefits; and LLMs slowing software development, increasing effort as a downside. At the team level, most of the participants refer to LLMs as mitigating interruptions, but also reducing mentorship opportunities. At the organisation level, participants highlight the cost savings due to LLMs, but also security and privacy concerns. At the society level, participants mention LLMs promoting entrepreneurship, but also the erosion of social trust. We conclude that balanced control is the
+
+ideal approach towards LLMs. Our findings also indicate LLMs are improving developer experience, enabling them to reach flow state.
+
+9 ACKNOWLEDGMENT
+Samuel is supported by a Faculty of IT PhD scholarship. We would like to express profound gratitude to all participants who took part in this study, Hashini Gunatilake, Humphrey Obie, and Marcos Medeiros for the wonderful feedback on this research, and Nimmi Weeraddana and Haoyu Gao for helping during participant recruitment.
+
+REFERENCES
+[1] I. Ozkaya, "Application of large language models to software engineering tasks: Opportunities, risks, and implications," IEEE Software, vol. 40, no. 3, pp. 4-8, 2023.
+[2] T. Teubner et al., "Welcome to the era of chatgpt et al. the prospects of large language models," Business & Information Systems Engineering, vol. 65, no. 2, pp. 95-101, 2023.
+[3] Y. K. Dwivedi et al., "Opinion paper:"so what if chatgpt wrote it?" multidisciplinary perspectives on opportunities, challenges and implica- tions of generative conversational ai for research, practice and policy," International Journal of Information Management, vol. 71, p. 102642, 2023.
+[4] A. M. Dakhel et al., "Github copilot ai pair programmer: Asset or liability?"
+Journal of Systems and Software, vol. 203, p. 111734, 2023.
+[5] X. Zhou et al., "Exploring the problems, their causes and solutions of ai pair programming: A study on github and stack overflow," Journal of Systems and Software, p. 112204, 2024.
+[6] X. Hou et al., "Large language models for software engineering: A systematic literature review," ACM Trans. Softw. Eng. Methodol., Sep. 2024. [Online]. Available: https://doi.org/10.1145/3695988
+[7] J. Wang et al., "Software testing with large language models: Survey, landscape, and vision," IEEE Transactions on Software Engineering, vol. 50, no. 4, pp. 911-936, 2024.
+[8] J. Di Rocco et al., "On the use of large language models in model-driven engineering," Software and Systems Modeling, pp. 1-26, 2025.
+[9] H. Mayer et al., "Superagency in the workplace: Empowering people to unlock ai's full potential," McKinsey Digital, vol. 28, 2025.
+[10] D. Debellis et al. (2024) Superagency in the workplace: Empowering people to unlock ai's full potential. [Online]. Available: https:
+//dora.dev/research/ai/gen-ai-report/
+[11] D. DeBellis et al. (2025) 2025 dora state of ai-assisted software development. [Online]. Available: https://dora.dev/research/ai/ #state-of-ai-assisted-software-development
+[12] G. Burtch et al., "The consequences of generative ai for online knowledge communities," Scientific Reports, vol. 14, no. 1, p. 10413, 2024.
+[13] S. Kabir, D. N. Udo-Imeh, B. Kou, and T. Zhang, "Is stack overflow obsolete? an empirical study of the characteristics of chatgpt answers to stack overflow questions," in Proceedings of the CHI Conference on Human Factors in Computing Systems, 2024, pp. 1-17.
+[14] A. Ziegler et al., "Measuring github copilot's impact on productivity,"
+Communications of the ACM, vol. 67, no. 3, pp. 54-63, 2024.
+[15] Z. K. Cui, M. Demirer, S. Jaffe, L. Musolff, S. Peng, and T. Salz, "The effects of generative ai on high skilled work: Evidence from three field experiments with software developers," Available at SSRN 4945566, 2024.
+[16] C. Ebert and P. Louridas, "Generative ai for software practitioners," IEEE Software, vol. 40, no. 4, pp. 30-38, 2023.
+[17] D. Nam, A. Macvean, V. Hellendoorn, B. Vasilescu, and B. Myers, "Using an llm to help with code understanding," in Proceedings of the IEEE/ACM 46th International Conference on Software Engineering, 2024, pp. 1-13.
+[18] M. A. Kuhail et al., ""will i be replaced?" assessing chatgpt's effect on software development and programmer perceptions of ai tools," Science of Computer Programming, vol. 235, p. 103111, 2024.
+[19] V. Krauﬂ et al., ""create a fear of missing out"-chatgpt implements unsolicited deceptive designs in generated websites without warning," in Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems, 2025, pp. 1-20.
+[20] H.-P. H. Lee et al., "The impact of generative ai on critical thinking: Self-reported reductions in cognitive effort and confidence effects from a survey of knowledge workers," in Proceedings of the CHI Conference on Human Factors in Computing Systems, 2025.
+
+[21] X. Chen et al., "An empirical study on challenges for llm application de- velopers," ACM Transactions on Software Engineering and Methodology, 2025.
+[22] J. Shi, Z. Yang, and D. Lo, "Efficient and green large language models for software engineering: Literature review, vision, and the road ahead," ACM Transactions on Software Engineering and Methodology, vol. 34, no. 5, pp. 1-22, 2025.
+[23] A. Mohamed, M. Assi, and M. Guizani, "The impact of llm-assistants on software developer productivity: A systematic literature review," arXiv preprint arXiv:2507.03156, 2025.
+[24] S. Ferino, R. Hoda, J. Grundy, and C. Treude, "Novice developers' perspectives on adopting llms for software development: a systematic literature review," arXiv preprint arXiv:2503.07556, 2025.
+[25] R. Hoda, "Socio-technical grounded theory for software engineering," IEEE Transactions on Software Engineering, vol. 48, no. 10, pp. 3808- 3832, 2022.
+[26] S. Ferino, R. Hoda, J. Grundy, and C. Treude, "Supplementary Information Package - STGT," 2025. [Online]. Available: https:
+//doi.org/10.5281/zenodo.17556044
+[27] R. Hoda, Qualitative Research with Socio-Technical Grounded Theory. Springer, 2024. [Online]. Available: https://link.springer.com/book/10. 1007/978-3-031-60533-8
+[28] U. M. Graetsch et al., "Dealing with data challenges when delivering data- intensive software solutions," IEEE Transactions on software engineering, vol. 49, no. 9, pp. 4349-4370, 2023.
+[29] C. Sindermann et al., "Assessing the attitude towards artificial intelligence: Introduction of a short measure in german, chinese, and english language," KI-Ku®nstliche intelligenz, vol. 35, no. 1, pp. 109-118, 2021.
+[30] A. Dogra and A. Nieto. (2025) Build with gpt-5 on databricks with ai gateway. Accessed: 2025-10-07. [Online]. Available: https:
+//www.databricks.com/blog/build-gpt-5-databricks-ai-gateway
+[31] M. team. (2025) Overview of copilot for power bi. Accessed: 2025- 10-07. [Online]. Available: https://learn.microsoft.com/en-us/power-bi/ create-reports/copilot-introduction
+[32] Z. Masood, R. Hoda, and K. Blincoe, "Real world scrum a grounded theory of variations in practice," IEEE Transactions on Software Engineering, vol. 48, no. 5, pp. 1579-1591, 2020.
+[33] A. E. Hassan et al., "Agentic software engineering: Foundational pillars and a research roadmap," arXiv preprint arXiv:2509.06216, 2025.
+[34] D. Russo, "Navigating the complexity of generative ai adoption in software engineering," ACM Transactions on Software Engineering and Methodology, vol. 33, no. 5, pp. 1-50, 2024.
+[35] J. T. Liang, C. Yang, and B. A. Myers, "A large-scale survey on the usability of ai programming assistants: Successes and challenges," in Proceedings of the 46th IEEE/ACM international conference on software engineering, 2024, pp. 1-13.
+[36] T. Weber et al., "Significant productivity gains through programming with large language models," Proceedings of the ACM on Human-Computer Interaction, vol. 8, no. EICS, pp. 1-29, 2024.
+[37] S. Abrahaòo, J. Grundy, M. Pezze`, M.-A. Storey, and D. A. Tamburri, "Software engineering by and for humans in an ai era," ACM Transactions on Software Engineering and Methodology, vol. 34, no. 5, pp. 1-46, 2025.
+[38] N. Jegham, M. Abdelatti, L. Elmoubarki, and A. Hendawi, "How hungry is ai? benchmarking energy, water, and carbon footprint of llm inference," arXiv preprint arXiv:2505.09598, 2025.
+[39] A. Fawz, A. Tahir, and K. Blincoe, "Vibe coding in practice: Motivations, challenges, and a future outlook-a grey literature review," arXiv preprint arXiv:2510.00328, 2025.
+[40] N. S. Mathews and M. Nagappan, "Test-driven development and llm-based code generation," in Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering, ser. ASE '24. New York, NY, USA: Association for Computing Machinery, 2024, p. 1583-1594. [Online]. Available: https://doi.org/10.1145/3691620.3695527
+[41] A. N. Meyer, E. T. Barr, C. Bird, and T. Zimmermann, "Today was a good day: The daily life of software developers," IEEE Transactions on Software Engineering, vol. 47, no. 5, pp. 863-880, 2019.
+[42] A. Razzaq, J. Buckley, Q. Lai, T. Yu, and G. Botterweck, "A systematic literature review on the influence of enhanced developer experience on developers' productivity: Factors, practices, and recommendations," ACM Computing Surveys, vol. 57, no. 1, pp. 1-46, 2024.
+[43] M. Zu®ger et al., "Reducing interruptions at work: A large-scale field study of flowlight," in Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems, 2017, pp. 61-72.
+[44] H. Mozannar et al., "Reading between the lines: Modeling user behavior and costs in ai-assisted programming," in Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems, 2024, pp. 1-16.
+[45] 
+S. Ritonummi, V. Siitonen, M. Salo, H. Pirkkalainen, and A. Sivunen, "Flow experience in software engineering," in Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2023, pp. 618-630.
+[46] A. Noda et al., "Devex: What actually drives productivity?" Communica- tions of the ACM, vol. 66, no. 11, pp. 44-49, 2023.
+[47] A. Simkute et al., "Ironies of generative ai: understanding and mitigating productivity loss in human-ai interaction," International Journal of Human-Computer Interaction, vol. 41, no. 5, pp. 2898-2919, 2025.
+[48] E. Jiang et al., "Promptmaker: Prompt-based prototyping with large language models," in CHI Conference on Human Factors in Computing Systems Extended Abstracts, 2022, pp. 1-8.
+[49] H. Subramonyam et al., "Prototyping with prompts: Emerging approaches and challenges in generative ai design for collaborative software teams," in Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems, 2025, pp. 1-22.
+[50] A. N. Duc and P. Abrahamsson, "Minimum viable product or multiple facet product? the role of mvp in software startups," in International conference on agile software development. Springer, 2016, pp. 118-130.
+[51] A. Alami, V. V. Jensen, and N. A. Ernst, "Accountability in code review: The role of intrinsic drivers and the impact of llms," ACM Transactions on Software Engineering and Methodology, 2025.
+[52] A. Alami and N. Ernst, "Human and machine: How software engineers perceive and engage with ai-assisted code reviews compared to their peers," in 2025 IEEE/ACM 18th International Conference on Cooperative and Human Aspects of Software Engineering (CHASE). IEEE, 2025, pp. 63-74.
+[53] E. Kalliamvakou et al., "What makes a great manager of software engineers?" IEEE Transactions on Software Engineering, vol. 45, no. 1,
+pp. 87-106, 2017.
+[54] P. Naur, "Intuition in software development," in International Joint Conference on Theory and Practice of Software Development. Springer, 1985, pp. 60-79.
+[55] V. Chen et al., "Understanding the role of human intuition on reliance in human-ai decision-making with explanations," Proceedings of the ACM on Human-computer Interaction, vol. 7, no. CSCW2, pp. 1-32, 2023.
+[56] T. R. Tulili, A. Capiluppi, and A. Rastogi, "Burnout in software engineering: A systematic mapping study," Information and Software Technology, vol. 155, p. 107116, 2023.
+[57] S. Barke et al., "Grounded copilot: How programmers interact with code- generating models," Proceedings of the ACM on Programming Languages, vol. 7, no. OOPSLA1, pp. 85-111, 2023.
+[58] L. Banh, F. Holldack, and G. Strobel, "Copiloting the future: How generative ai transforms software engineering," Information and Software Technology, vol. 183, p. 107751, 2025.
+[59] J. T. Liang et al., "Prompts are programs too! understanding how developers build software containing prompts," Proceedings of the ACM on Software Engineering, vol. 2, no. FSE, pp. 1591-1614, 2025.
+[60] Z. S. Li et al., "Ai tool use and adoption in software development by individuals and organizations: a grounded theory study," arXiv preprint arXiv:2406.17325, 2024.
+[61] B. Glaser and A. Strauss, Discovery of grounded theory: Strategies for qualitative research. Routledge, 2017.
+[62] M. Juliet and S. Corbin, Basics of qualitative research: Techniques and procedures for developing grounded theory. SAGE Publications, Incorporated, 2015.
+[63] M. R. Roller and P. J. Lavrakas, Applied qualitative research design: A total quality framework approach. Guilford Publications, 2015.
+[64] P. Lenberg et al., "Qualitative software engineering research: Reflections and guidelines," Journal of Software: Evolution and Process, vol. 36, no. 6, p. e2607, 2024.
+[65] H. Gunatilake et al., "The role of empathy in software engineering - a socio-technical grounded theory," ACM Trans. Softw. Eng. Methodol., Sep. 2025, just Accepted. [Online]. Available: https://doi.org/10.1145/3768315
+[66] I. Korstjens and A. Moser, "Series: Practical guidance to qualitative research. part 4: Trustworthiness and publishing," European Journal of General Practice, vol. 24, no. 1, pp. 120-124, 2018.
+[67] K. Madampe et al., "The struggle is real! the agony of recruiting partic- ipants for empirical software engineering studies," in 2024 IEEE Sym- posium on Visual Languages and Human-Centric Computing (VL/HCC). IEEE, 2024, pp. 417-422.
+
+
