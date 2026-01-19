@@ -2,31 +2,25 @@
 .venv/
 venv/
 env/
-ENV/
 
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
-dist/
-build/
+
+# Generated / Local
+vectorstore/
+artifacts/
+chroma/
+*.sqlite*
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# Environment
-.env
-.env.local
 
 # OS
 .DS_Store
-Thumbs.db
 
-# Project specific
-vectorstore/
-artifacts/
-*.pyc
+# Environment
+.env
