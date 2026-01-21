@@ -273,12 +273,4 @@ python main.py "What is artificial intelligence?"
 - [SentenceTransformers](https://www.sbert.net/)
 - [RAG Paper - Lewis et al.](https://arxiv.org/abs/2005.11401)
 
----
-
-## 📝 License
-
-MIT License - See [LICENSE](LICENSE) for details.
-
----
-
-*Built with ❤️ using CrewAI, LangChain, and OpenAI*
+ngChain, and OpenAI*
