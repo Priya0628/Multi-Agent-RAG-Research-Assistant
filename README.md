@@ -1,8 +1,6 @@
-# 🤖 Multi-Agent RAG Research System
+#  Multi-Agent RAG Research System
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![CrewAI](https://img.shields.io/badge/CrewAI-1.3.0-green.svg)](https://crewai.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 > **Production-ready RAG pipeline with multi-agent orchestration for automated research synthesis**
 
@@ -14,15 +12,15 @@ A sophisticated knowledge retrieval and synthesis system that combines **Retriev
 
 | Feature | Description |
 |---------|-------------|
-| **🔍 Semantic Search** | Dense vector retrieval using SentenceTransformers for accurate context matching |
-| **🤖 Multi-Agent Pipeline** | 4 specialized AI agents with distinct roles (Researcher → Fact-Checker → Editor → Publisher) |
-| **📊 Local Embeddings** | Free, offline embeddings using `all-MiniLM-L6-v2` (no API costs for retrieval) |
-| **✅ Citation Tracking** | Full source attribution and fact verification against original documents |
-| **📄 Multi-Format Output** | Generates Markdown briefs and LinkedIn-ready social posts |
+| ** Semantic Search** | Dense vector retrieval using SentenceTransformers for accurate context matching |
+| ** Multi-Agent Pipeline** | 4 specialized AI agents with distinct roles (Researcher → Fact-Checker → Editor → Publisher) |
+| ** Local Embeddings** | Free, offline embeddings using `all-MiniLM-L6-v2` (no API costs for retrieval) |
+| ** Citation Tracking** | Full source attribution and fact verification against original documents |
+| ** Multi-Format Output** | Generates Markdown briefs and LinkedIn-ready social posts |
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -65,7 +63,7 @@ A sophisticated knowledge retrieval and synthesis system that combines **Retriev
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -117,7 +115,7 @@ python main.py
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 multi-agent-rag/
